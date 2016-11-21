@@ -19,6 +19,6 @@
  # Then start the app
  node app.js
  
--# Or
+# Or
  npm start
  ```
