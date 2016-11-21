@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Bird-Shamaness/MuchPixels.svg?branch=master)](https://travis-ci.org/Bird-Shamaness/MuchPixels)
+ https://david-dm.org/Bird-Shamaness/MuchPixels.svg
  
  How to start the app
  ----------------
