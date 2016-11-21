@@ -1,12 +1,17 @@
 const nodemailer = require('nodemailer');
+const supportEmail = 'pixels_cust_sup@yahoo.com';
 
-const transporter = nodemailer.createTransport({
-  service: 'SendGrid',
+
+const settings  = {
+  host: "smtp.sendgrid.net",
+  port: parseInt(587, 10),
+  requiresAuth: true,
   auth: {
     user: process.env.SENDGRID_USER,
     pass: process.env.SENDGRID_PASSWORD
   }
-});
+};
+const transporter = nodemailer.createTransport(settings);
 
 /**
  * GET /contact
@@ -30,19 +35,21 @@ exports.postContact = (req, res) => {
   const errors = req.validationErrors();
 
   if (errors) {
+    console.log(err.message)
     req.flash('errors', errors);
     return res.redirect('/contact');
   }
 
   const mailOptions = {
-    to: 'your@email.com',
+    to: supportEmail,
     from: `${req.body.name} <${req.body.email}>`,
-    subject: 'Contact Form | Hackathon Starter',
+    subject: 'Contact Form',
     text: req.body.message
   };
 
   transporter.sendMail(mailOptions, (err) => {
     if (err) {
+      console.log(err.message)
       req.flash('errors', { msg: err.message });
       return res.redirect('/contact');
     }
