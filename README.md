@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Bird-Shamaness/MuchPixels.svg?branch=master)](https://travis-ci.org/Bird-Shamaness/MuchPixels)
+ 
  How to start the app
  ----------------
  The easiest way to get started is to clone the repository:
