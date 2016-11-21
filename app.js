@@ -20,12 +20,16 @@ const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 
-const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const upload = multer({
+  dest: path.join(__dirname, 'uploads')
+});
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.load({ path: '.env.example' });
+dotenv.load({
+  path: '.env.example'
+});
 
 /**
  * Controllers (route handlers).
@@ -48,7 +52,7 @@ const app = express();
  * Connect to MongoDB.
  */
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGOLAB_URI);
 mongoose.connection.on('error', () => {
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
@@ -67,7 +71,9 @@ app.use(sass({
 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(expressValidator());
 app.use(session({
   resave: true,
@@ -97,18 +103,20 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   // After successful login, redirect back to the intended page
   if (!req.user &&
-      req.path !== '/login' &&
-      req.path !== '/signup' &&
-      !req.path.match(/^\/auth/) &&
-      !req.path.match(/\./)) {
+    req.path !== '/login' &&
+    req.path !== '/signup' &&
+    !req.path.match(/^\/auth/) &&
+    !req.path.match(/\./)) {
     req.session.returnTo = req.path;
   } else if (req.user &&
-      req.path == '/account') {
+    req.path == '/account') {
     req.session.returnTo = req.path;
   }
   next();
 });
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: 31557600000
+}));
 
 /**
  * Primary app routes.
@@ -135,27 +143,45 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
  * OAuth authentication routes. (Sign in)
  */
 app.get('/auth/instagram', passport.authenticate('instagram'));
-app.get('/auth/instagram/callback', passport.authenticate('instagram', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/instagram/callback', passport.authenticate('instagram', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/facebook', passport.authenticate('facebook', {
+  scope: ['email', 'user_location']
+}));
+app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/github', passport.authenticate('github'));
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/github/callback', passport.authenticate('github', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/google', passport.authenticate('google', {
+  scope: 'profile email'
+}));
+app.get('/auth/google/callback', passport.authenticate('google', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/linkedin', passport.authenticate('linkedin', { state: 'SOME STATE' }));
-app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/linkedin', passport.authenticate('linkedin', {
+  state: 'SOME STATE'
+}));
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
 
@@ -163,19 +189,31 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRe
  * OAuth authorization routes. (API examples)
  */
 app.get('/auth/foursquare', passport.authorize('foursquare'));
-app.get('/auth/foursquare/callback', passport.authorize('foursquare', { failureRedirect: '/api' }), (req, res) => {
+app.get('/auth/foursquare/callback', passport.authorize('foursquare', {
+  failureRedirect: '/api'
+}), (req, res) => {
   res.redirect('/api/foursquare');
 });
 app.get('/auth/tumblr', passport.authorize('tumblr'));
-app.get('/auth/tumblr/callback', passport.authorize('tumblr', { failureRedirect: '/api' }), (req, res) => {
+app.get('/auth/tumblr/callback', passport.authorize('tumblr', {
+  failureRedirect: '/api'
+}), (req, res) => {
   res.redirect('/api/tumblr');
 });
-app.get('/auth/steam', passport.authorize('openid', { state: 'SOME STATE' }));
-app.get('/auth/steam/callback', passport.authorize('openid', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/steam', passport.authorize('openid', {
+  state: 'SOME STATE'
+}));
+app.get('/auth/steam/callback', passport.authorize('openid', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect(req.session.returnTo || '/');
 });
-app.get('/auth/pinterest', passport.authorize('pinterest', { scope: 'read_public write_public' }));
-app.get('/auth/pinterest/callback', passport.authorize('pinterest', { failureRedirect: '/login' }), (req, res) => {
+app.get('/auth/pinterest', passport.authorize('pinterest', {
+  scope: 'read_public write_public'
+}));
+app.get('/auth/pinterest/callback', passport.authorize('pinterest', {
+  failureRedirect: '/login'
+}), (req, res) => {
   res.redirect('/api/pinterest');
 });
 
