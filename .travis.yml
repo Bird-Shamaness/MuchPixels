@@ -3,4 +3,7 @@ node_js:
   - "6"
   - "6.9"
   - "7.1"
-  - "iojs"
+  - "node"
+
+install:
+  - npm install
