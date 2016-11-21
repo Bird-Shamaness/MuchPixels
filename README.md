@@ -1,8 +1,6 @@
 Hot to start the app
 ---------------
 
-The easiest way to get started is to clone the repository:
-
 ```bash
 # Change directory
 cd myproject
