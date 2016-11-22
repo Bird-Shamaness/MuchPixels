@@ -26,14 +26,7 @@ const userSchema = new mongoose.Schema({
     location: String,
     website: String,
     picture: String
-  },
-
-  photos: [{
-    img: {
-      data: Buffer,
-      contentType: String
-    }
-  }]
+  }
 }, {
   timestamps: true
 });

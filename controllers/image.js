@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const Photo = require('../models/Photo-model');
+
 const fs = require('fs');
 
 exports.getFileUpload = (req, res) => {
@@ -16,27 +18,17 @@ exports.postFileUpload = (req, res) => {
         return res.redirect('/');
     }
 
-    User.findOne({
-        '_id': req.user._id
-    }, (err, userWithId) => {
-        if (err) {
-            throw err;
-        }
+    var photoDestination = req.file.path;
 
-        var photoDestination = req.file.path;
-
-        var photo = {
-            img: {
-                data: fs.readFileSync(photoDestination),
-                contentType: req.file.mimetype
-            }
-        };
-
-        userWithId.photos.push(photo);
-        userWithId.save();
-
-        fs.unlinkSync(photoDestination);
+    var photo = new Photo({
+        data: fs.readFileSync(photoDestination),
+        contentType: req.file.mimetype,
+        userId: req.user._id
     });
+
+    photo.save();
+
+    fs.unlinkSync(photoDestination);
 
     req.flash('success', {
         msg: 'File was uploaded successfully.'
