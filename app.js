@@ -89,7 +89,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
+  if (req.path === '/upload') {
     next();
   } else {
     lusca.csrf()(req, res, next);
@@ -140,8 +140,8 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
-app.get('/upload', imageController.getUpload);
-app.get('/upload', imageController.postUpload);
+app.get('/upload', imageController.getFileUpload);
+app.post('/upload', imageController.postFileUpload);
 
 /**
  * OAuth authentication routes. (Sign in)
