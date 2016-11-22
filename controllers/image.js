@@ -25,7 +25,7 @@ exports.postFileUpload = (req, res) => {
 
         var photoDestination = req.file.path;
 
-        let photo = {
+        var photo = {
             img: {
                 data: fs.readFileSync(photoDestination),
                 contentType: req.file.mimetype
