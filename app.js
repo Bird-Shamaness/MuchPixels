@@ -141,7 +141,7 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
 app.get('/upload', imageController.getFileUpload);
-app.post('/upload', imageController.postFileUpload);
+app.post('/upload', upload.single('myFile'), imageController.postFileUpload);
 
 /**
  * OAuth authentication routes. (Sign in)
