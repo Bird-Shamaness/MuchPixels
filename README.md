@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/Bird-Shamaness/MuchPixels.svg?branch=master)](https://travis-ci.org/Bird-Shamaness/MuchPixels) ![Dependencies Status](https://david-dm.org/Bird-Shamaness/MuchPixels.svg) ![devDependencies Status](https://david-dm.org/boennemann/badges/dev-status.svg)
 
+[Hosted here](https://much-pixels.herokuapp.com "much pixels")
+
  How to start the app
  ----------------
  The easiest way to get started is to clone the repository:
