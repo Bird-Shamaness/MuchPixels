@@ -23,7 +23,7 @@ exports.postFileUpload = (req, res) => {
             throw err;
         }
 
-        let photoDestination = req.file.path;
+        var photoDestination = req.file.path;
 
         let photo = {
             img: {
