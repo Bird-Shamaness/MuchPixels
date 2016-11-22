@@ -13,6 +13,8 @@ exports.postFileUpload = (req, res) => {
         return res.redirect('/');
     }
 
+    console.log(req);
+
     req.flash('success', {
         msg: 'File was uploaded successfully.'
     });
