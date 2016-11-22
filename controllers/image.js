@@ -34,6 +34,8 @@ exports.postFileUpload = (req, res) => {
 
         userWithId.photos.push(photo);
         userWithId.save();
+
+        fs.unlinkSync(photoDestination);
     });
 
     req.flash('success', {
