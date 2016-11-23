@@ -18,3 +18,12 @@ Clone the repository:
  
  # Open localhost at port 3000
  ```
+
+## TODO
+- Photo schema details
+- Photo page
+- Hot page
+- Trending 
+- Lord to create beautifull landing page
+- User photos page
+- Search (optional)
