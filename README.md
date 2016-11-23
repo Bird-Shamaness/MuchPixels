@@ -32,4 +32,6 @@ Clone the repository:
 - Hot page (Where photos with most likes are displayed)
 - Trending (Where photos with not so many likes are dislpayed)
 - Photo page (Where user can discover photos, and filter them by something, for example tags, location or number of likes) 
+- Fix styles of the whole page
+- Unit tests
 - Chat (optional)
