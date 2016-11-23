@@ -2,9 +2,9 @@
 
 [Hosted here](https://much-pixels.herokuapp.com "much pixels")
 
- How to start the app
+ How to start the app locally (Note that the Telerik Academy network does not allow connection to the remote db)
  ----------------
- The easiest way to get started is to clone the repository:
+Clone the repository:
  
  ```bash
  # Change directory
@@ -13,14 +13,8 @@
  # Install NPM dependencies
  npm install
  
- # Wait forever
- 
- # Or, if you prefer to use `yarn` instead of `npm`
- yarn install
-
  # Then start the app
- node app.js
+ node app.js or npm start
  
- # Or
- npm start
+ # Open localhost at port 3000
  ```
