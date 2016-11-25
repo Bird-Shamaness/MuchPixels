@@ -28,6 +28,11 @@ const userSchema = new mongoose.Schema({
     ref: 'Photo'
   }],
 
+  roles: {
+    type: Array,
+    default: ['standart']
+  },
+
   profile: {
     name: String,
     gender: String,
