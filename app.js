@@ -37,7 +37,7 @@ dotenv.load({
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
 const contactController = require('./controllers/contact');
-const imageController = require('./controllers/image');
+const uploadController = require('./controllers/upload');
 
 /**
  * API keys and Passport configuration.
@@ -140,8 +140,8 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
-app.get('/upload', imageController.getFileUpload);
-app.post('/upload', upload.single('myFile'), imageController.postFileUpload);
+app.get('/upload', uploadController.getFileUpload);
+app.post('/upload', upload.single('myFile'), uploadController.postFileUpload);
 
 /**
  * OAuth authentication routes. (Sign in)
