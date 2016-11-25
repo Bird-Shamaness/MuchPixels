@@ -19,8 +19,14 @@ const userSchema = new mongoose.Schema({
   instagram: String,
   tokens: Array,
 
-  comments: [Comment.schema],
-  photos: [Photo.schema],
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  photos: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Photo'
+  }],
 
   profile: {
     name: String,

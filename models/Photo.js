@@ -1,20 +1,21 @@
-const mongoose = require('mongoose'),
-  Comment = require('./Comment');
+const mongoose = require('mongoose');
+//  Comment = require('./Comment');
 
 const photoSchema = new mongoose.Schema({
   data: Buffer,
   contentType: String,
-  userId: mongoose.Schema.Types.ObjectId,
   author: String,
   date: {
     type: Date,
     default: Date.now
   },
   upvotes: [{
-    username: String,
-    required: true
+    username: String
   }],
-  comments: [Comment.schema]
+  comments: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
 }, {
   timestamps: true
 });
