@@ -34,10 +34,10 @@ dotenv.load({
 /**
  * Controllers (route handlers).
  */
-const homeController = require('./controllers/home');
-const userController = require('./controllers/user');
-const contactController = require('./controllers/contact');
-const uploadController = require('./controllers/upload');
+const homeController = require('./controllers/home-controller');
+const userController = require('./controllers/user-controller');
+const contactController = require('./controllers/contact-controller');
+const uploadController = require('./controllers/upload-controller');
 
 /**
  * API keys and Passport configuration.

@@ -4,35 +4,34 @@ const fs = require('fs');
 
 exports.getFileUpload = (req, res) => {
   if (!req.user) {
-      return res.redirect('/');
-    }
+    return res.redirect('/');
+  }
 
   res.render('upload', {
-      title: 'File Upload'
-    });
+    title: 'File Upload'
+  });
 };
 
 exports.postFileUpload = (req, res) => {
   if (!req.user) {
-      return res.redirect('/');
-    }
+    return res.redirect('/');
+  }
 
   const photoDestination = req.file.path;
 
   const photo = new Photo({
-      data: fs.readFileSync(photoDestination),
-      contentType: req.file.mimetype,
-      userId: req.user._id,
-      author: req.user.email
-    });
+    data: fs.readFileSync(photoDestination),
+    contentType: req.file.mimetype,
+    author: req.user.email
+  });
 
   photo.save();
 
   fs.unlinkSync(photoDestination);
 
   req.flash('success', {
-      msg: 'File was uploaded successfully.'
-    });
+    msg: 'File was uploaded successfully.'
+  });
 
   res.redirect('/upload');
 };
