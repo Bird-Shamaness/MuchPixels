@@ -42,7 +42,7 @@ const uploadController = require('./controllers/upload');
 /**
  * API keys and Passport configuration.
  */
-const passportConfig = require('./config/passport');
+const passportConfig = require('./config/passport/passport');
 
 /**
  * Create Express server.
