@@ -1,13 +1,11 @@
-const bcrypt = require('bcrypt-nodejs');
-const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const photoSchema = new mongoose.Schema({
-    data: Buffer,
-    contentType: String,
-    userId: mongoose.Schema.Types.ObjectId
+  data: Buffer,
+  contentType: String,
+  userId: mongoose.Schema.Types.ObjectId
 }, {
-    timestamps: true
+  timestamps: true
 });
 
 const Photo = mongoose.model('Photo', photoSchema);

@@ -1,4 +1,3 @@
-const User = require('../models/User');
 const Photo = require('../models/photo-model');
 
 const fs = require('fs');
