@@ -33,6 +33,8 @@ const userSchema = new mongoose.Schema({
     default: ['standart']
   },
 
+  userDescription: String,
+
   profile: {
     name: String,
     gender: String,
