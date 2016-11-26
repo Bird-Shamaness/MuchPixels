@@ -1,37 +1,34 @@
-const Photo = require('../models/Photo');
-
 const fs = require('fs');
 
-exports.getFileUpload = (req, res) => {
-  if (!req.user) {
-    return res.redirect('/');
-  }
+module.exports = function (data) {
+  return {
+    getPhotoUpload(req, res) {
+      if (!req.user) {
+        return res.redirect('/');
+      }
 
-  res.render('upload', {
-    title: 'File Upload'
-  });
-};
+      res.render('upload', {
+        title: 'Photo Upload'
+      });
+    },
+    postPhotoUpload(req, res) {
+      if (!req.user) {
+        return res.redirect('/');
+      }
 
-exports.postFileUpload = (req, res) => {
-  if (!req.user) {
-    return res.redirect('/');
-  }
+      const photoDestination = req.file.path;
 
-  const photoDestination = req.file.path;
+      data.createPhoto(fs.readFileSync(photoDestination), req.file.mimetype, req.user.email)
+      .then((photo) => {
+        console.log(photoDestination);
+        fs.unlinkSync(photoDestination);
 
-  const photo = new Photo({
-    data: fs.readFileSync(photoDestination),
-    contentType: req.file.mimetype,
-    author: req.user.email
-  });
+        req.flash('success', {
+          msg: 'File was uploaded successfully.'
+        });
 
-  photo.save();
-
-  fs.unlinkSync(photoDestination);
-
-  req.flash('success', {
-    msg: 'File was uploaded successfully.'
-  });
-
-  res.redirect('/upload');
+        res.redirect('/upload');
+      });
+    }
+  };
 };

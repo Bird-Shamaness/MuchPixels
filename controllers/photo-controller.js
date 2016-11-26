@@ -13,14 +13,20 @@ exports.getPhotoDetails = (req, res) => {
           return bufferConverter.convertBufferTo64Array(photo.data);
         })
         .then((convertedString) => {
+          const canUpvote = foundPhoto.upvotes.find(v => v.username === req.user.username);
+
           const photoModel = {
-              contentType: foundPhoto.contentType,
-              data: convertedString
-            };
+            contentType: foundPhoto.contentType,
+            data: convertedString,
+            canUpvote,
+            comments: foundPhoto.comments,
+            date: foundPhoto.date,
+            author: foundPhoto.author
+          };
 
           res.render('photo-details', {
-              photoModel
-            });
+            photoModel
+          });
         })
         .catch((err) => {
           console.log(err);

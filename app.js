@@ -31,13 +31,15 @@ dotenv.load({
   path: '.env.globals'
 });
 
+const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
+
 /**
  * Controllers (route handlers).
  */
 const homeController = require('./controllers/home-controller');
 const userController = require('./controllers/user-controller');
 const contactController = require('./controllers/contact-controller');
-const uploadController = require('./controllers/upload-controller');
+const uploadController = require('./controllers/upload-controller')(data);
 const photoController = require('./controllers/photo-controller');
 
 /**
@@ -53,12 +55,6 @@ const app = express();
 /**
  * Connect to MongoDB.
  */
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
-mongoose.connection.on('error', () => {
-  console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
-  process.exit();
-});
 
 /**
  * Express configuration.
@@ -141,8 +137,8 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
-app.get('/upload', uploadController.getFileUpload);
-app.post('/upload', upload.single('myFile'), uploadController.postFileUpload);
+app.get('/upload', uploadController.getPhotoUpload);
+app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
 app.get('/photo/details/:id', photoController.getPhotoDetails);
 
