@@ -38,6 +38,7 @@ const homeController = require('./controllers/home-controller');
 const userController = require('./controllers/user-controller');
 const contactController = require('./controllers/contact-controller');
 const uploadController = require('./controllers/upload-controller');
+const photoController = require('./controllers/photo-controller');
 
 /**
  * API keys and Passport configuration.
@@ -142,6 +143,8 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/upload', uploadController.getFileUpload);
 app.post('/upload', upload.single('myFile'), uploadController.postFileUpload);
+
+app.get('/photo/details/:id', photoController.getPhotoDetails);
 
 /**
  * OAuth authentication routes. (Sign in)
