@@ -27,7 +27,9 @@ module.exports = function (models) {
 
         return resolve(photo);
       });
-
+    },
+    getPhotoById(id) {
+      return Photo.findById(id).exec();
     }
   };
 };

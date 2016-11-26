@@ -1,12 +1,12 @@
 const Photo = require('./../models/Photo'),
   bufferConverter = require('../utils/buffer-converter');
 
+module.exports = function (data) {
+  return {
+    getPhotoDetails(req, res) {
+      let foundPhoto = {};
 
-exports.getPhotoDetails = (req, res) => {
-  let foundPhoto = {};
-
-  Photo.findById(req.params.id)
-        .exec()
+      data.getPhotoById(req.params.id)
         .then((photo) => {
           foundPhoto = photo;
 
@@ -31,4 +31,6 @@ exports.getPhotoDetails = (req, res) => {
         .catch((err) => {
           console.log(err);
         });
+    }
+  };
 };

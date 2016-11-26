@@ -40,7 +40,7 @@ const homeController = require('./controllers/home-controller');
 const userController = require('./controllers/user-controller');
 const contactController = require('./controllers/contact-controller');
 const uploadController = require('./controllers/upload-controller')(data);
-const photoController = require('./controllers/photo-controller');
+const photoController = require('./controllers/photo-controller')(data);
 
 /**
  * API keys and Passport configuration.

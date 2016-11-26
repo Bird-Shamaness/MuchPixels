@@ -20,7 +20,6 @@ module.exports = function (data) {
 
       data.createPhoto(fs.readFileSync(photoDestination), req.file.mimetype, req.user.email)
       .then((photo) => {
-        console.log(photoDestination);
         fs.unlinkSync(photoDestination);
 
         req.flash('success', {
