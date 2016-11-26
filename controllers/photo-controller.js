@@ -3,17 +3,25 @@ const Photo = require('./../models/Photo'),
 
 
 exports.getPhotoDetails = (req, res) => {
-  Photo.findById(req.params.id, (err, photo) => {
-      bufferConverter.convertBufferTo64Array(photo.data)
-            .then((convertedString) => {
-              const photoModel = {
-                  contentType: photo.contentType,
-                  data: convertedString
-                };
+  let foundPhoto = {};
 
-              res.render('photo-details', {
-                  photoModel
-                });
+  Photo.findById(req.params.id).exec()
+        .then((photo) => {
+          foundPhoto = photo;
+
+          return bufferConverter.convertBufferTo64Array(photo.data);
+        })
+        .then((convertedString) => {
+          const photoModel = {
+              contentType: foundPhoto.contentType,
+              data: convertedString
+            };
+
+          res.render('photo-details', {
+              photoModel
             });
-    });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 };
