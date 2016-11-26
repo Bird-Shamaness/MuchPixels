@@ -5,7 +5,8 @@ const Photo = require('./../models/Photo'),
 exports.getPhotoDetails = (req, res) => {
   let foundPhoto = {};
 
-  Photo.findById(req.params.id).exec()
+  Photo.findById(req.params.id)
+        .exec()
         .then((photo) => {
           foundPhoto = photo;
 

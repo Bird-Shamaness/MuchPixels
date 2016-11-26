@@ -12,7 +12,11 @@
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li(class=(title == 'Home') ? 'active' : undefined)
-          a(href='/') Home
+          a(href='/') Home 
+        li(class=(title == 'Hot') ? 'active' : undefined)
+          a(href='/hot') Hot
+        li(class=(title == 'Trending') ? 'active' : undefined)
+          a(href='/trending') Trending
         li(class=(title == 'Contact') ? 'active' : undefined)
           a(href='/contact') Contact
       ul.nav.navbar-nav.navbar-right
