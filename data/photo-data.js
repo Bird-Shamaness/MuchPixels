@@ -30,6 +30,24 @@ module.exports = function (models) {
     },
     getPhotoById(id) {
       return Photo.findById(id).exec();
+    },
+    getHotPhotos(count) {
+      const photos = Photo.find()
+        .sort({ upvoats: -1 })
+        .limit(count);
+
+      return new Promise((resolve, reject) => {
+        resolve(photos);
+      });
+    },
+    getTrendingPhotos(count) {
+      const photos = Photo.find()
+        .sort({ date: -1 })
+        .limit(count);
+
+      return new Promise((resolve, reject) => {
+        resolve(photos);
+      });
     }
   };
 };

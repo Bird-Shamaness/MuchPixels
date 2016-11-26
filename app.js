@@ -141,6 +141,8 @@ app.get('/upload', uploadController.getPhotoUpload);
 app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
 app.get('/photo/details/:id', photoController.getPhotoDetails);
+app.get('/photo/hot', photoController.getHotPhotos);
+app.get('/photo/trending', photoController.getTrendingPhotos);
 
 /**
  * OAuth authentication routes. (Sign in)

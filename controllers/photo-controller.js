@@ -1,6 +1,8 @@
 const Photo = require('./../models/Photo'),
   bufferConverter = require('../utils/buffer-converter');
 
+const listCount = 5;
+
 module.exports = function (data) {
   return {
     getPhotoDetails(req, res) {
@@ -31,6 +33,22 @@ module.exports = function (data) {
         .catch((err) => {
           console.log(err);
         });
+    },
+    getHotPhotos(req, res) {
+      data.getHotPhotos(listCount)
+      .then((photos) => {
+        res.render('photo-list', {
+          photos
+        });
+      });
+    },
+    getTrendingPhotos(req, res) {
+      data.getTrendingPhotos(listCount)
+      .then((photos) => {
+        res.render('photo-list', {
+          photos
+        });
+      });
     }
   };
 };
