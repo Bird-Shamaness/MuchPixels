@@ -14,7 +14,7 @@ module.exports = function (data) {
           return bufferConverter.convertBufferTo64Array(photo.data);
         })
         .then((convertedString) => {
-          const canUpvote = false;
+          let canUpvote = false;
           if (req.user) {
             canUpvote = !foundPhoto.upvotes.find(v => v.user === req.user.email);
           }

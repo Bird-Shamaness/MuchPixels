@@ -10,7 +10,7 @@ block content
         if photoModel.canUpvote
           a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/upvote`) Vote
         else 
-          a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/unvote`) Unvote
+          a.fa.fa-ban.fa-stack-2x.text-danger(href=`/photo/details/${photoModel.id}/unvote`) Unvote
 
       ul 
         each comment in photoModel.comments
