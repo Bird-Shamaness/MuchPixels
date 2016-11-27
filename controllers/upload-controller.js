@@ -23,10 +23,10 @@ module.exports = function (data) {
         fs.unlinkSync(photoDestination);
 
         req.flash('success', {
-          msg: 'File was uploaded successfully.'
+          msg: 'Your photo was uploaded successfully.'
         });
 
-        res.redirect('/upload');
+        res.redirect(`/photo/details/${photo._id}`);
       });
     }
   };
