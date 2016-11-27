@@ -142,7 +142,7 @@ app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
 app.get('/photo/details/:id', photoController.getPhotoDetails);
 app.post('/photo/details/:id', photoController.postComment);
-app.put('/photo/details/:id', photoController.putUpvoat);
+app.get('/photo/details/:id/upvote', photoController.putUpvote);
 
 app.get('/photo/hot', photoController.getHotPhotos);
 app.get('/photo/trending', photoController.getTrendingPhotos);

@@ -10,7 +10,7 @@ const photoSchema = new mongoose.Schema({
     default: Date.now
   },
   upvotes: [{
-    username: String
+    user: String
   }],
   comments: [{
     user: {

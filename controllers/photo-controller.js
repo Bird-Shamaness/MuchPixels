@@ -14,15 +14,17 @@ module.exports = function (data) {
           return bufferConverter.convertBufferTo64Array(photo.data);
         })
         .then((convertedString) => {
-          const canUpvote = foundPhoto.upvotes.find(v => v.username === req.user.username);
+          const canUpvote = !foundPhoto.upvotes.find(v => v.user === req.user.email);
 
           const photoModel = {
             contentType: foundPhoto.contentType,
             data: convertedString,
             canUpvote,
+            votes: foundPhoto.upvotes.length,
             comments: foundPhoto.comments,
             date: foundPhoto.date,
-            author: foundPhoto.author
+            author: foundPhoto.author,
+            id: foundPhoto._id
           };
 
           res.render('photo-details', {
@@ -55,8 +57,11 @@ module.exports = function (data) {
           res.redirect(`/photo/details/${req.params.id}`);
         });
     },
-    putUpvoat(req, res) {
-
+    putUpvote(req, res) {
+      data.upvoat(req.params.id, req.user)
+      .then((successPhoto) => {
+        res.redirect(`/photo/details/${req.params.id}`);
+      });
     }
   };
 };

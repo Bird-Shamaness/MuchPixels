@@ -59,6 +59,17 @@ module.exports = function (models) {
       return Photo.findByIdAndUpdate(id, {
         $push: { comments: comment }
       });
+    },
+    upvoat(id, user) {
+      const upvote = {
+        user: user.email
+      };
+
+      console.log(upvote);
+
+      return Photo.findByIdAndUpdate(id, {
+        $push: { upvotes: upvote }
+      });
     }
   };
 };

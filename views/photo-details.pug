@@ -4,6 +4,13 @@ block content
   .page-header
     h2
       img(src=`data:${photoModel.contentType};base64,${photoModel.data}`)
+     
+      p= photoModel.votes + ' votes'
+
+      if photoModel.canUpvote
+        a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/upvote`) Vote
+      else 
+        a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/unvote`) Unvote
 
       ul 
         each comment in photoModel.comments
