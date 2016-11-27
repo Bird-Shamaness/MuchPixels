@@ -6,22 +6,24 @@ block content
       img(src=`data:${photoModel.contentType};base64,${photoModel.data}`)
      
       p= photoModel.votes + ' votes'
-
-      if photoModel.canUpvote
-        a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/upvote`) Vote
-      else 
-        a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/unvote`) Unvote
+      if photoModel.hasUser
+        if photoModel.canUpvote
+          a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/upvote`) Vote
+        else 
+          a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/unvote`) Unvote
 
       ul 
         each comment in photoModel.comments
           li= comment.content
-      form.form-horizontal(method='POST')
-        input(type='hidden', name='_csrf', value=_csrf)
-        .form-group
-          .col-sm-7
-            input.form-control(type='text', name='content', id='content', autofocus, required)
-        .form-group
-          .col-sm-offset-3.col-sm-7
-            button.col-sm-3.btn.btn-primary(type='submit')
-              i.fa.fa-user
-              | Comment
+
+      if photoModel.hasUser
+        form.form-horizontal(method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group
+            .col-sm-7
+              input.form-control(type='text', name='content', id='content', autofocus, required)
+          .form-group
+            .col-sm-offset-3.col-sm-7
+              button.col-sm-3.btn.btn-primary(type='submit')
+                i.fa.fa-user
+                | Comment

@@ -14,7 +14,10 @@ module.exports = function (data) {
           return bufferConverter.convertBufferTo64Array(photo.data);
         })
         .then((convertedString) => {
-          const canUpvote = !foundPhoto.upvotes.find(v => v.user === req.user.email);
+          const canUpvote = false;
+          if (req.user) {
+            canUpvote = !foundPhoto.upvotes.find(v => v.user === req.user.email);
+          }
 
           const photoModel = {
             contentType: foundPhoto.contentType,
@@ -24,7 +27,8 @@ module.exports = function (data) {
             comments: foundPhoto.comments,
             date: foundPhoto.date,
             author: foundPhoto.author,
-            id: foundPhoto._id
+            id: foundPhoto._id,
+            hasUser: !!req.user
           };
 
           res.render('photo-details', {

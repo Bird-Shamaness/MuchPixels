@@ -33,7 +33,7 @@ module.exports = function (models) {
     },
     getHotPhotos(count) {
       const photos = Photo.find()
-        .sort({ upvoats: -1 })
+        .sort({ upvotes: -1 })
         .limit(count);
 
       return new Promise((resolve, reject) => {
