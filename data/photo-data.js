@@ -1,6 +1,7 @@
 module.exports = function (models) {
   const {
-        Photo
+        Photo,
+        Comment
     } = models;
 
   return {
@@ -47,6 +48,18 @@ module.exports = function (models) {
 
       return new Promise((resolve, reject) => {
         resolve(photos);
+      });
+    },
+    createComment(id, content, user) {
+      const comment = {
+        user: user.email,
+        content
+      };
+
+      console.log(comment);
+
+      return Photo.findByIdAndUpdate(id, {
+        $push: { comments: comment }
       });
     }
   };

@@ -13,8 +13,18 @@ const photoSchema = new mongoose.Schema({
     username: String
   }],
   comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
+    user: {
+    type: String,
+    required: true
+  },
+    content: {
+    type: String,
+    required: true
+  },
+    date: {
+    type: Date,
+    default: Date.now
+  }
   }],
 }, {
   timestamps: true

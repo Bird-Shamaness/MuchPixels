@@ -1,5 +1,4 @@
-const Photo = require('./../models/Photo'),
-  bufferConverter = require('../utils/buffer-converter');
+const bufferConverter = require('../utils/buffer-converter');
 
 const listCount = 5;
 
@@ -49,6 +48,15 @@ module.exports = function (data) {
           photos
         });
       });
+    },
+    postComment(req, res) {
+      data.createComment(req.params.id, req.body.content, req.user)
+        .then((successPhoto) => {
+          res.redirect(`/photo/details/${req.params.id}`);
+        });
+    },
+    putUpvoat(req, res) {
+
     }
   };
 };
