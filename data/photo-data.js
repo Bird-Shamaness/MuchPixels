@@ -1,7 +1,6 @@
 module.exports = function (models) {
   const {
-        Photo,
-        Comment
+        Photo
     } = models;
 
   return {
@@ -53,10 +52,9 @@ module.exports = function (models) {
     createComment(id, content, user) {
       const comment = {
         user: user.email,
-        content
+        content,
+        photoId: id
       };
-
-      console.log(comment);
 
       return Photo.findByIdAndUpdate(id, {
         $push: { comments: comment }

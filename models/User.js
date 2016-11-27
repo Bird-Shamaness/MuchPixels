@@ -1,8 +1,6 @@
 const bcrypt = require('bcrypt-nodejs');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
-const Comment = require('./Comment');
-const Photo = require('./Photo');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -20,8 +18,19 @@ const userSchema = new mongoose.Schema({
   tokens: Array,
 
   comments: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
+    user: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+      default: Date.now
+    },
+    postId: mongoose.Schema.Types.ObjectId
   }],
   photos: [{
     type: mongoose.Schema.Types.ObjectId,
