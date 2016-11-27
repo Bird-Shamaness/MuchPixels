@@ -60,15 +60,18 @@ module.exports = function (models) {
         $push: { comments: comment }
       });
     },
-    upvoat(id, user) {
+    upvote(id, user) {
       const upvote = {
         user: user.email
       };
 
-      console.log(upvote);
-
       return Photo.findByIdAndUpdate(id, {
         $push: { upvotes: upvote }
+      });
+    },
+    unvote(id, user) {
+      return Photo.findByIdAndUpdate(id, {
+        $pull: { upvotes: { user: user.email } }
       });
     }
   };

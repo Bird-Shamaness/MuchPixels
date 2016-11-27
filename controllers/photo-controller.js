@@ -58,10 +58,16 @@ module.exports = function (data) {
         });
     },
     putUpvote(req, res) {
-      data.upvoat(req.params.id, req.user)
+      data.upvote(req.params.id, req.user)
       .then((successPhoto) => {
         res.redirect(`/photo/details/${req.params.id}`);
       });
+    },
+    removeUpvote(req, res) {
+      data.unvote(req.params.id, req.user)
+       .then((successPhoto) => {
+         res.redirect(`/photo/details/${req.params.id}`);
+       });
     }
   };
 };
