@@ -9,6 +9,13 @@ const photoSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  title:{
+    type: String,
+    required: true
+  },
+  description: {
+    type: String
+  },
   upvotes: [{
     user: String
   }],

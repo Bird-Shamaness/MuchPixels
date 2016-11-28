@@ -14,11 +14,11 @@ module.exports = function (data) {
     postPhotoUpload(req, res) {
       if (!req.user) {
         return res.redirect('/');
-      }
+      } 
 
       const photoDestination = req.file.path;
-
-      data.createPhoto(fs.readFileSync(photoDestination), req.file.mimetype, req.user.email)
+      console.log(req.body);
+      data.createPhoto(fs.readFileSync(photoDestination), req.file.mimetype, req.user.email, req.body.title, req.body.description)
       .then((photo) => {
         fs.unlinkSync(photoDestination);
 
