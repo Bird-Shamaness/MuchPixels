@@ -28,10 +28,10 @@ const init = () => {
   });
 
   $('#comment').click(() => {
-    $('#comment').html(spinner);
-
     const url = `/api/photo/${id}`;
     const content = $('#content').val();
+
+    $('#commentBox').html(spinner);
 
     requester.post(url, content)
     .then((response) => {
