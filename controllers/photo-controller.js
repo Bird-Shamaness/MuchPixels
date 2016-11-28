@@ -59,6 +59,7 @@ module.exports = function (data) {
       if (req.isAuthenticated()) {
         data.createComment(req.params.id, req.body.content, req.user)
         .then((successPhoto) => {
+          res.send;
           res.redirect(`/photo/details/${req.params.id}`);
         });
       }

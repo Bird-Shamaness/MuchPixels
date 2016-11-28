@@ -141,7 +141,7 @@ app.get('/upload', uploadController.getPhotoUpload);
 app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
 app.get('/photo/details/:id', photoController.getPhotoDetails);
-app.post('/photo/details/:id', photoController.postComment);
+app.post('/api/photo/:id', photoController.postComment);
 app.get('/api/photo/:id/upvote', photoController.putUpvote);
 app.get('/api/photo/:id/unvote', photoController.removeUpvote);
 
