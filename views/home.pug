@@ -11,10 +11,13 @@ html
   body
     div.home-image-wrapper
        h1.header-title PIXELS
-       a.button-discover(href="photo/hot") Discover
-       a.button-signin(href="/login") Sign in
-       a.button-signup(href="/signup") Sign up
-
+       if !user
+          a.button-discover(href="photo/hot") Discover
+          a.button-signin(href="/login") Sign in
+          a.button-signup(href="/signup") Sign up
+       else
+          a.button-discover(href="photo/hot") Discover
+          a.button-profile(href="/account") Profile
     script(src='/js/lib/jquery-2.2.4.min.js')
     script(src='/js/lib/bootstrap.min.js')
     script(src='/js/main.js')

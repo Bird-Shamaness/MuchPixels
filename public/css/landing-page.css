@@ -26,10 +26,8 @@ a:link, a:visited, a:hover, a:active   {
     color: white;
 }
 
-.button-discover, .button-signin, .button-signup{
+.button-discover, .button-signin, .button-signup, .button-profile{
     padding:20px;
-    width: 10%;
-    height: 5%;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -40,7 +38,7 @@ a:link, a:visited, a:hover, a:active   {
     link-style-type: none;
 }
 
-.button-discover:hover, .button-signin:hover , .button-signup:hover{
+.button-discover:hover, .button-signin:hover , .button-signup:hover, .button-profile:hover{
     background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -59,9 +57,5 @@ a:link, a:visited, a:hover, a:active   {
 @media (max-width: 900px) {
     .header-title {
       font-size: 80px;
-    }
-    .button-discover, .button-signin, .button-signup {
-      width: 20%;
-      height: 15%; 
-      top: 50vh;}      
+    }   
  }
