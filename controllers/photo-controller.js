@@ -64,12 +64,14 @@ module.exports = function (data) {
     putUpvote(req, res) {
       data.upvote(req.params.id, req.user)
       .then((successPhoto) => {
+        res.send;
         res.redirect(`/photo/details/${req.params.id}`);
       });
     },
     removeUpvote(req, res) {
       data.unvote(req.params.id, req.user)
        .then((successPhoto) => {
+         res.send;
          res.redirect(`/photo/details/${req.params.id}`);
        });
     }

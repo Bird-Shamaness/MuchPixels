@@ -2,15 +2,16 @@ extends layout
 
 block content
   .page-header
-    h2
+    h2#main
       img(src=`data:${photoModel.contentType};base64,${photoModel.data}`)
      
       p= photoModel.votes + ' votes'
-      if photoModel.hasUser
-        if photoModel.canUpvote
-          a.fa.fa-camera-retro.fa-4x(href=`/photo/details/${photoModel.id}/upvote`) Vote
-        else 
-          a.fa.fa-ban.fa-stack-2x.text-danger(href=`/photo/details/${photoModel.id}/unvote`) Unvote
+      div.voting
+        if photoModel.hasUser
+          if photoModel.canUpvote
+            button.fa.fa-camera-retro.vote Vote
+          else 
+            button.fa.fa-thumbs-down.unvote Unvote
 
       ul 
         each comment in photoModel.comments
