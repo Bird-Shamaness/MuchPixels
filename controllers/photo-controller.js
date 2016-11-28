@@ -48,42 +48,79 @@ module.exports = function (data) {
         res.render('photo-list', {
           photos
         });
-      });
     },
     getTrendingPhotos(req, res) {
       data.getTrendingPhotos(listCount)
-      .then((photos) => {
-        res.render('photo-list', {
-          photos
+        .then((photos) => {
+          res.render('photo-list', {
+            photos
+          });
         });
-      });
     },
     postComment(req, res) {
       if (req.isAuthenticated()) {
         data.createComment(req.params.id, req.body.content, req.user)
-        .then((successPhoto) => {
-          res.send;
-          res.redirect(`/photo/details/${req.params.id}`);
-        });
+          .then((successPhoto) => {
+            res.send;
+            res.redirect(`/photo/details/${req.params.id}`);
+          });
       }
     },
     putUpvote(req, res) {
       if (req.isAuthenticated()) {
         data.upvote(req.params.id, req.user)
-      .then((successPhoto) => {
-        res.send;
-        res.redirect(`/photo/details/${req.params.id}`);
-      });
+          .then((successPhoto) => {
+            res.send;
+            res.redirect(`/photo/details/${req.params.id}`);
+          });
       }
     },
     removeUpvote(req, res) {
       if (req.isAuthenticated()) {
         data.unvote(req.params.id, req.user)
-       .then((successPhoto) => {
-         res.send;
-         res.redirect(`/photo/details/${req.params.id}`);
-       });
+          .then((successPhoto) => {
+            res.send;
+            res.redirect(`/photo/details/${req.params.id}`);
+          });
       }
+    },
+    getEdit(req, res) {
+      if (!req.isAuthenticated()) {
+        res.redirect('/login');
+      }
+
+      let foundPhoto;
+
+      data.getPhotoById(req.params.id)
+        .then((photo) => {
+          if (photo.author !== req.user.email) {
+            res.redirect(`/photo/details/${req.params.id}`);
+          }
+
+          foundPhoto = photo;
+
+          return bufferConverter.convertBufferTo64Array(photo.data);
+        })
+        .then((convertedString) => {
+          const photoModel = {
+            contentType: foundPhoto.contentType,
+            data: convertedString,
+            votes: foundPhoto.upvotes.length,
+            comments: foundPhoto.comments,
+            date: foundPhoto.date,
+            author: foundPhoto.author,
+            id: foundPhoto._ids
+          };
+
+          res.render('edit', {
+            photo: photoModel
+          });
+        })
+        .catch(
+          (err) => {
+            console.log(err);
+          }
+        );
     }
   };
 };

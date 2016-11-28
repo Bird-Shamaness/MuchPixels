@@ -159,6 +159,8 @@ app.get('/api/photo/:id/unvote', photoController.removeUpvote);
 app.get('/photo/hot', photoController.getHotPhotos);
 app.get('/photo/trending', photoController.getTrendingPhotos);
 
+app.get('/photo/edit/:id', photoController.getEdit);
+
 /**
  * OAuth authentication routes. (Sign in)
  */
