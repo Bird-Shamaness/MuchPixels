@@ -56,24 +56,30 @@ module.exports = function (data) {
       });
     },
     postComment(req, res) {
-      data.createComment(req.params.id, req.body.content, req.user)
+      if (req.isAuthenticated()) {
+        data.createComment(req.params.id, req.body.content, req.user)
         .then((successPhoto) => {
           res.redirect(`/photo/details/${req.params.id}`);
         });
+      }
     },
     putUpvote(req, res) {
-      data.upvote(req.params.id, req.user)
+      if (req.isAuthenticated()) {
+        data.upvote(req.params.id, req.user)
       .then((successPhoto) => {
         res.send;
         res.redirect(`/photo/details/${req.params.id}`);
       });
+      }
     },
     removeUpvote(req, res) {
-      data.unvote(req.params.id, req.user)
+      if (req.isAuthenticated()) {
+        data.unvote(req.params.id, req.user)
        .then((successPhoto) => {
          res.send;
          res.redirect(`/photo/details/${req.params.id}`);
        });
+      }
     }
   };
 };
