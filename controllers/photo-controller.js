@@ -41,7 +41,7 @@ module.exports = function (data) {
     },
     getHotPhotos(req, res) {
       data.getHotPhotos(listCount)
-        .then((photos) => bufferConverter.convertCollectionOfBuffersto64Array(photos))
+        .then(photos => bufferConverter.convertCollectionOfBuffersto64Array(photos))
         .then((photos) => {
           res.render('photo-list', {
             photos
@@ -104,11 +104,8 @@ module.exports = function (data) {
           const photoModel = {
             contentType: foundPhoto.contentType,
             data: convertedString,
-            votes: foundPhoto.upvotes.length,
-            comments: foundPhoto.comments,
-            date: foundPhoto.date,
-            author: foundPhoto.author,
-            id: foundPhoto._ids
+            description: foundPhoto.description,
+            title: foundPhoto.title
           };
 
           res.render('edit', {
@@ -120,6 +117,13 @@ module.exports = function (data) {
             console.log(err);
           }
         );
+    },
+    postEdit(req, res) {
+      data.updatePhoto(req.params.id, req.body.title, req.body.description)
+        .then((photo) => {
+          console.log(photo);
+          res.redirect(`/photo/details/${req.params.id}`);
+        });
     }
   };
 };

@@ -1,7 +1,7 @@
 module.exports = function (models) {
   const {
-        Photo
-    } = models;
+    Photo
+  } = models;
 
   return {
     getAllPhotos() {
@@ -21,7 +21,7 @@ module.exports = function (models) {
           data,
           contentType,
           author,
-          title, 
+          title,
           description
         });
         photo.save();
@@ -34,7 +34,9 @@ module.exports = function (models) {
     },
     getHotPhotos(count) {
       const photos = Photo.find()
-        .sort({ upvotes: -1 })
+        .sort({
+          upvotes: -1
+        })
         .limit(count);
 
       return new Promise((resolve, reject) => {
@@ -43,7 +45,9 @@ module.exports = function (models) {
     },
     getTrendingPhotos(count) {
       const photos = Photo.find()
-        .sort({ date: -1 })
+        .sort({
+          date: -1
+        })
         .limit(count);
 
       return new Promise((resolve, reject) => {
@@ -58,7 +62,9 @@ module.exports = function (models) {
       };
 
       return Photo.findByIdAndUpdate(id, {
-        $push: { comments: comment }
+        $push: {
+          comments: comment
+        }
       });
     },
     upvote(id, user) {
@@ -67,12 +73,24 @@ module.exports = function (models) {
       };
 
       return Photo.findByIdAndUpdate(id, {
-        $push: { upvotes: upvote }
+        $push: {
+          upvotes: upvote
+        }
       });
     },
     unvote(id, user) {
       return Photo.findByIdAndUpdate(id, {
-        $pull: { upvotes: { user: user.email } }
+        $pull: {
+          upvotes: {
+            user: user.email
+          }
+        }
+      });
+    },
+    updatePhoto(id, newTitle, newDescription) {
+      return Photo.findByIdAndUpdate(id, {
+        title: newTitle,
+        description: newDescription
       });
     }
   };

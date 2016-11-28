@@ -32,7 +32,10 @@ const upload = multer({
 
     cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
   },
-  limits: { fileSize: 1000000, files: 1 }
+  limits: {
+    fileSize: 1000000,
+    files: 1
+  }
 });
 
 /**
@@ -160,6 +163,7 @@ app.get('/photo/hot', photoController.getHotPhotos);
 app.get('/photo/trending', photoController.getTrendingPhotos);
 
 app.get('/photo/edit/:id', photoController.getEdit);
+app.post('/photo/edit/:id', photoController.postEdit);
 
 /**
  * OAuth authentication routes. (Sign in)

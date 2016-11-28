@@ -1,4 +1,16 @@
 extends layout
 
 block content
-    
+    img(src=`data:${photo.contentType};base64,${photo.data}`)
+
+    form(method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+            label.col-sm-3.control-label(for='email') Title
+            .col-sm-7
+                input.form-control(type='text', name='title', id='title', required, value=photo.title)
+        .form-group
+            label.col-sm-3.control-label(for='description') Description
+            .col-sm-7
+                input.form-control(type='text', name='description', id='description', required, value=photo.title)
+        button.btn.btn-primary(type='submit') Edit
