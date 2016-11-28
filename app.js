@@ -21,7 +21,18 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 
 const upload = multer({
-  dest: path.join(__dirname, 'uploads')
+  dest: path.join(__dirname, 'uploads'),
+  fileFilter(req, file, cb) {
+    const filetypes = /jpeg|jpg|png/;
+    const mimetype = filetypes.test(file.mimetype);
+
+    if (mimetype) {
+      return cb(null, true);
+    }
+
+    cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
+  },
+  limits: { fileSize: 1000000, files: 1 }
 });
 
 /**
