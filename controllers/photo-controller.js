@@ -42,6 +42,9 @@ module.exports = function (data) {
     getHotPhotos(req, res) {
       data.getHotPhotos(listCount)
       .then((photos) => {
+          return bufferConverter.convertCollectionOfBuffersto64Array(photos);
+      })
+      .then((photos) => {
         res.render('photo-list', {
           photos
         });

@@ -58,3 +58,29 @@ exports.convertBufferTo64Array = (arrayBuffer) => new Promise((resolve, reject) 
 
         resolve(convertedBuffer);
     });
+
+exports.convertCollectionOfBuffersto64Array = (array) => {
+    const result = [];
+
+    for(var element of array){  
+       let data = base64ArrayBuffer(element.data);
+      
+      
+
+       let photoModel = {
+            contentType: element.contentType,
+            data: data,
+            votes: element.upvotes.length,
+            date: element.date,
+            author: element.author,
+            title: element.title,
+            description: element.description,
+            id: element._id
+       }
+       
+       result.push(photoModel);        
+    }
+    return new Promise((resolve, reject)  => {
+        resolve(result);
+    });
+}
