@@ -40,3 +40,27 @@ describe('GET /random-url', () => {
       .expect(404, done);
   });
 });
+
+describe('GET /login', () => {
+  it('should return 200 OK', (done) => {
+    request(app)
+      .get('/login')
+      .expect(200, done);
+  });
+});
+
+describe('GET /logout', () => {
+  it('should return 302 Found when not logged in', (done) => {
+    request(app)
+      .get('/logout')
+      .expect(302, done);
+  });
+});
+
+describe('GET /forgot', () => {
+  it('should return 302 Found when not logged in', (done) => {
+    request(app)
+      .get('/forgot')
+      .expect(302, done);
+  });
+});
