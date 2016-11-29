@@ -50,6 +50,7 @@ module.exports = function (data) {
     },
     getTrendingPhotos(req, res) {
       data.getTrendingPhotos(listCount)
+        .then(photos => bufferConverter.convertCollectionOfBuffersto64Array(photos))
         .then((photos) => {
           res.render('photo-list', {
             photos
