@@ -7,13 +7,13 @@ block content
       | Upload Photo
 
   .row
-    .col-sm-6
-      form(role='form', enctype='multipart/form-data', method='POST')
+    .col-md-8
+      form.upload-wrapper(role='form', enctype='multipart/form-data', method='POST')
         .form-group
-          label.control-label File
-          input(type='file', name='myFile')
-          label.control-label Title
-          input(type='text', name='title')
-          label.control-label Description
-          input(type='text', name='description')
-        button.btn.btn-primary(type='submit') Upload
+          label.control-label-file.col-xs-9 Select photo
+          input.upload-file.col-xs-9(type='file', name='myFile')
+          label.control-label-title.col-xs-9 Choose Title
+          input.upload-title(type='text', name='title')
+          label.control-label-description.col-xs-9 Fancy description
+          textarea.upload-description.col-xs-9(cols="40" rows="5", name='description')
+        button.btn.btn-primary.col-xs-9(id="submit-upload" type='submit') Upload

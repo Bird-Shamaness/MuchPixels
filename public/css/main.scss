@@ -109,14 +109,38 @@ footer {
     margin-bottom: 0;
   }
 }
-
 // Input Fields
 // -------------------------
-
 textarea {
   resize: vertical;
 }
 
+.upload-wrapper,
+.upload-file,
+.upload-title{
+  float: center;
+  padding: 1%;  
+  font-size: 18px;
+  font-family: "Arial", Times;
+}
+
+.upload-description{
+  float: left;
+  width: 100%;
+}
+
+.control-label-file, .control-label-title, .control-label-description{
+  display: inline-block;
+  font-size: 18px;
+  margin: 1%;
+  float: left;
+}
+
+#submit-upload{
+  display: inline-block;
+  width: 100%;
+  margin-top: 1%;
+}
 // Navbar
 // -------------------------
 
