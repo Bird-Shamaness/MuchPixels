@@ -27,11 +27,12 @@ a:link, a:visited, a:hover, a:active   {
 }
 
 .button-discover, .button-signin, .button-signup, .button-profile{
-    padding:20px;
+    display:inline-block;
+    padding: 20px;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     margin: 1%;
+    margin-top:15%;
+    transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.0);
     border: 1px solid grey;
     color: white;
@@ -51,11 +52,14 @@ a:link, a:visited, a:hover, a:active   {
      letter-spacing: -1px; 
      line-height: 1;
      text-align: center; 
-     top: 10%;  
+     top: 20%;  
 }  
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .header-title {
       font-size: 80px;
     }   
+    .button-discover, .button-signin, .button-signup, .button-profile{
+    margin-top:60%;
+    }
  }
