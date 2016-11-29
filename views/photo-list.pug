@@ -1,7 +1,6 @@
 extends layout
 
 block content
-    div.hot-photo-wrapper
       each photo in photos
         div.single-photo-wrapper  
           h2.single-photo-heading= photo.title 
@@ -10,4 +9,4 @@ block content
              h2.single-photo-description= photo.description
           div.single-photo-upvote-wrapper
              button.fa.fa-camera-retro.vote
-             h3.single-photo-votes= photo.votes
+             h1.single-photo-votes= photo.votes

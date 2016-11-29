@@ -15,6 +15,7 @@ tmp
 
 #Build
 public/css/main.css
+public/css/landing-page.cs
 
 # API keys and secrets
 .env
