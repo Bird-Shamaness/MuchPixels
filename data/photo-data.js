@@ -56,7 +56,7 @@ module.exports = function (models) {
     },
     createComment(id, content, user) {
       const comment = {
-        user: user.email,
+        user: user.username,
         content,
         photoId: id
       };
