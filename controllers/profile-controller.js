@@ -17,8 +17,6 @@ module.exports = function (data) {
                 })
                 .then((convertedPhotos) => {
 
-                  console.log(convertedPhotos);
-
                   const userModel = {
                       username: user.username,
                       photos: convertedPhotos
