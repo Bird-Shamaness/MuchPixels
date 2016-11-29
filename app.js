@@ -155,15 +155,15 @@ app.get('/upload', uploadController.getPhotoUpload);
 app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
 app.get('/photo/details/:id', photoController.getPhotoDetails);
-app.post('/api/photo/:id', photoController.postComment);
-app.get('/api/photo/:id/upvote', photoController.putUpvote);
-app.get('/api/photo/:id/unvote', photoController.removeUpvote);
+app.post('/api/photo/:id', passportConfig.isAuthenticated, photoController.postComment);
+app.get('/api/photo/:id/upvote', passportConfig.isAuthenticated, photoController.putUpvote);
+app.get('/api/photo/:id/unvote', passportConfig.isAuthenticated, photoController.removeUpvote);
 
 app.get('/photo/hot', photoController.getHotPhotos);
 app.get('/photo/trending', photoController.getTrendingPhotos);
 
-app.get('/photo/edit/:id', photoController.getEdit);
-app.post('/photo/edit/:id', photoController.postEdit);
+app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
+app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
 
 /**
  * OAuth authentication routes. (Sign in)

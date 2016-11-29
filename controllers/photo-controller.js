@@ -58,37 +58,27 @@ module.exports = function (data) {
         });
     },
     postComment(req, res) {
-      if (req.isAuthenticated()) {
-        data.createComment(req.params.id, req.body.content, req.user)
-          .then((successPhoto) => {
-            res.send;
-            res.redirect(`/photo/details/${req.params.id}`);
-          });
-      }
+      data.createComment(req.params.id, req.body.content, req.user)
+        .then((successPhoto) => {
+          res.send;
+          res.redirect(`/photo/details/${req.params.id}`);
+        });
     },
     putUpvote(req, res) {
-      if (req.isAuthenticated()) {
-        data.upvote(req.params.id, req.user)
-          .then((successPhoto) => {
-            res.send;
-            res.redirect(`/photo/details/${req.params.id}`);
-          });
-      }
+      data.upvote(req.params.id, req.user)
+        .then((successPhoto) => {
+          res.send;
+          res.redirect(`/photo/details/${req.params.id}`);
+        });
     },
     removeUpvote(req, res) {
-      if (req.isAuthenticated()) {
-        data.unvote(req.params.id, req.user)
-          .then((successPhoto) => {
-            res.send;
-            res.redirect(`/photo/details/${req.params.id}`);
-          });
-      }
+      data.unvote(req.params.id, req.user)
+        .then((successPhoto) => {
+          res.send;
+          res.redirect(`/photo/details/${req.params.id}`);
+        });
     },
     getEdit(req, res) {
-      if (!req.isAuthenticated()) {
-        res.redirect('/login');
-      }
-
       let foundPhoto;
 
       data.getPhotoById(req.params.id)
@@ -122,7 +112,6 @@ module.exports = function (data) {
     postEdit(req, res) {
       data.updatePhoto(req.params.id, req.body.title, req.body.description)
         .then((photo) => {
-          console.log(photo);
           res.redirect(`/photo/details/${req.params.id}`);
         });
     }
