@@ -208,14 +208,14 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', {
 users = [];
 connections = [];
 
-// server.listen(process.env.PORT || 3000);
-// console.log("Server running...");
+server.listen(process.env.PORT || 3000);
+console.log("Server running...");
 
-app.get('/messenger', function(req, res) {
-    res.sendFile(__dirname + '/views');
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/public');
 });
 
-app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
 
 io.sockets.on('connection', function(socket) {
     connections.push(socket);
