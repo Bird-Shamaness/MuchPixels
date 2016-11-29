@@ -51,7 +51,7 @@ const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_U
  * Controllers (route handlers).
  */
 const homeController = require('./controllers/home-controller');
-const userController = require('./controllers/user-controller');
+const userController = require('./controllers/user-controller')(data);
 const contactController = require('./controllers/contact-controller');
 const uploadController = require('./controllers/upload-controller')(data);
 const photoController = require('./controllers/photo-controller')(data);
@@ -137,7 +137,7 @@ app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);
-app.get('/forgot', passportConfig.isAuthenticated, userController.getForgot);
+app.get('/forgot', userController.getForgot);
 app.post('/forgot', userController.postForgot);
 app.get('/reset/:token', passportConfig.isAuthenticated, userController.getReset);
 app.post('/reset/:token', userController.postReset);
