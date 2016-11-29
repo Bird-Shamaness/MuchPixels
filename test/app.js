@@ -58,9 +58,9 @@ describe('GET /logout', () => {
 });
 
 describe('GET /forgot', () => {
-  it('should return 302 Found when not logged in', (done) => {
+  it('should return 200 OK', (done) => {
     request(app)
       .get('/forgot')
-      .expect(302, done);
+      .expect(200, done);
   });
 });
