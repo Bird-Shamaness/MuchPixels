@@ -28,7 +28,9 @@ module.exports = function (data) {
             date: foundPhoto.date,
             author: foundPhoto.author,
             id: foundPhoto._id,
-            hasUser: !!req.user
+            hasUser: !!req.user,
+            title: foundPhoto.title,
+            description: foundPhoto.description
           };
 
           res.render('photo-details', {
