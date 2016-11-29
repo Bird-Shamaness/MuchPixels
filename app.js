@@ -18,6 +18,9 @@ const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
+const apps = express();
+const server = require('http').createServer(apps);
+const io = require('socket.io').listen(server);
 
 const upload = multer({
     dest: path.join(__dirname, 'uploads'),
@@ -73,10 +76,6 @@ const app = express();
 /**
  * Express configuration.
  */
-const server = require('http').createServer(app);
-const io = require('socket.io').listen(server);
-//server.listen(process.env.PORT || 3000);
-
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -209,14 +208,14 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', {
 users = [];
 connections = [];
 
-
+// server.listen(process.env.PORT || 3000);
 // console.log("Server running...");
 
-app.get('/mes', function(req, res) {
-    res.sendFile(__dirname + '/messenger-test');
+app.get('/messenger', function(req, res) {
+    res.sendFile(__dirname + '/views');
 });
 
-app.use(express.static(__dirname + '/messenger-test'));
+app.use(express.static(__dirname + '/views'));
 
 io.sockets.on('connection', function(socket) {
     connections.push(socket);
