@@ -2,3 +2,5 @@ extends layout
 
 block content
     p= userModel.username
+    each photo in userModel.photos
+        img.img-responsive(src=`data:${photo.contentType};base64,${photo.data}`)

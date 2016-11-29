@@ -1,6 +1,9 @@
-const User = require('../models/User');
-
 module.exports = function (models) {
+  const {
+        User,
+        Photo
+    } = models;
+
   return {
       getProfileByUsername(username) {
           return new Promise((resolve, reject) => {
@@ -13,6 +16,11 @@ module.exports = function (models) {
 
                   resolve(user);
                 });
+            });
+        },
+      getUserPhotos(username) {
+          return Photo.find({
+              author: username
             });
         }
     };

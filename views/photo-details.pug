@@ -6,7 +6,9 @@ block content
       div.col-sm-12
         div.page-header
           h1= photoModel.title
-          p Posted by <span class="glyphicon glyphicon-user"></span> <a href="#">#{photoModel.author}</a> on <span class="glyphicon glyphicon-time"></span> #{photoModel.date}</p>
+          p Posted by <span class="glyphicon glyphicon-user"></span>
+            a(href=`/profile/${photoModel.author}`) #{photoModel.author}
+            span  on <span class="glyphicon glyphicon-time"></span> #{photoModel.date}</p>
     div.row
       div.col-sm-8
         figure.margin-b-2
