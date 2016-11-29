@@ -62,6 +62,15 @@ a:link, a:visited, a:hover, a:active {
   text-align: center;
   top: 2%; }
 
+@media (min-width: 1400px) {
+  .header-title {
+    font-size: 200px; }
+  .header-subtitle {
+    font-size: 15px;
+    top: 20%; }
+  .button-discover, .button-signin, .button-signup, .button-profile {
+    margin-top: 60%; } }
+
 @media (max-width: 640px) {
   .header-title {
     font-size: 80px; }
