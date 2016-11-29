@@ -1,0 +1,8 @@
+extends layout
+    head
+      link(rel='stylesheet', href='../public/css/messenger.css')
+
+block content
+    p= userModel.username
+    each photo in userModel.photos
+        
