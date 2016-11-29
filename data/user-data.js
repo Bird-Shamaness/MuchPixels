@@ -67,10 +67,11 @@ module.exports = function (models) {
                 });
             });
         },
-      registerUser(email, password) {
+      registerUser(email, password, username) {
           const user = new User({
               email,
-              password
+              password,
+              username
             });
 
           return new Promise((resolve, reject) => {

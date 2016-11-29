@@ -88,7 +88,7 @@ module.exports = function (data) {
             return res.redirect('/signup');
           }
 
-          return data.registerUser(req.body.email, req.body.password);
+          return data.registerUser(req.body.email, req.body.password, req.body.username);
         })
         .then((user) => {
           req.logIn(user, (err) => {
