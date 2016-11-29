@@ -22,16 +22,15 @@ module.exports = function (connectionString) {
   };
 
   fs.readdirSync('./data')
-        .filter(x => x.includes('-data'))
-        .forEach((file) => {
-          const dataModule =
-                require(path.join(__dirname, file))(models);
+    .filter(x => x.includes('-data'))
+    .forEach((file) => {
+      const dataModule = require(path.join(__dirname, file))(models);
 
-          Object.keys(dataModule)
-                .forEach((key) => {
-                  data[key] = dataModule[key];
-                });
+      Object.keys(dataModule)
+        .forEach((key) => {
+          data[key] = dataModule[key];
         });
+    });
 
   return data;
 };

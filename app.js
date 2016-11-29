@@ -13,7 +13,6 @@ const dotenv = require('dotenv');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('express-flash');
 const path = require('path');
-const mongoose = require('mongoose');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 const expressStatusMonitor = require('express-status-monitor');
@@ -55,6 +54,7 @@ const userController = require('./controllers/user-controller')(data);
 const contactController = require('./controllers/contact-controller');
 const uploadController = require('./controllers/upload-controller')(data);
 const photoController = require('./controllers/photo-controller')(data);
+const profileController = require('./controllers/profile-controller')(data);
 
 /**
  * API keys and Passport configuration.
@@ -164,6 +164,8 @@ app.get('/photo/trending', photoController.getTrendingPhotos);
 
 app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
 app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
+
+app.get('/profile/:username', profileController.getUserProfile);
 
 /**
  * OAuth authentication routes. (Sign in)
