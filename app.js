@@ -41,6 +41,9 @@ const upload = multer({
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
+dotenv.load({
+  path: '.env.globals'
+});
 
 const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
 
