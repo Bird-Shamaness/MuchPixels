@@ -86,6 +86,12 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public');
 });
 
+//  messenger logic
+app.get('/messenger', function(req, res) { // тука е раута
+    res.render("messenger");
+});
+
+app.use(express.static(__dirname + '/public'));
 
 
 //app.set('port', process.env.PORT || 3000); // in conflict with messenger server.listen/ Should be removed, logic extended in server.listen
