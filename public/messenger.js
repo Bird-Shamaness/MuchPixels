@@ -1,15 +1,15 @@
  /* globals require function*/
 
  $(function() {
-     const socket = io();
-     const $messageForm = $('#messageForm');
-     const $message = $('#message');
-     const $chat = $('#chat');
-     const $messageArea = $('#messageArea');
-     const $userFormArea = $('#userFormArea');
-     const $userForm = $('#userForm');
-     const $users = $('#users');
-     const $username = $('#username');
+     let socket = io();
+     let $messageForm = $('#messageForm');
+     let $message = $('#message');
+     let $chat = $('#chat');
+     let $messageArea = $('#messageArea');
+     let $userFormArea = $('#userFormArea');
+     let $userForm = $('#userForm');
+     let $users = $('#users');
+     let $username = $('#username');
 
      $messageForm.submit(function(e) {
          e.preventDefault();
@@ -35,7 +35,7 @@
      socket.on('get users', function(data) {
          let html = '';
          for (i = 0; i < data.length; i++) {
-             html += '<li class="list-group-item">' + data[i] + '</li>';
+             html += '<li class="list-group-item"><div id="advanced"></div>' + data[i] + '</li>';
          }
          $users.html(html);
      });
