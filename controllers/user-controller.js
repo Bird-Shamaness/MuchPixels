@@ -129,6 +129,8 @@ module.exports = function (data) {
         return res.redirect('/account');
       }
 
+      let oldUsername = '';
+
       data.findUserById(req.user.id)
         .then((user) => {
           const options = {
@@ -140,9 +142,12 @@ module.exports = function (data) {
             username: req.body.username || user.username
           };
 
+          oldUsername = user.username;
+
           return data.updateUserById(user.id, options);
         })
-        .then((user) => {
+        .then(user => data.changePhotosUsername(oldUsername, user.username))
+        .then(() => {
           req.flash('success', {
             msg: 'Profile information has been updated.'
           });

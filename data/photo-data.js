@@ -92,6 +92,22 @@ module.exports = function (models) {
         title: newTitle,
         description: newDescription
       });
+    },
+    changePhotosUsername(oldUsername, newUsername) {
+      Photo.find({
+        author: oldUsername
+      }, (err, data) => new Promise((resolve, reject) => {
+        if (err) {
+          reject(err);
+        }
+
+        data.forEach((photo) => {
+          photo.author = newUsername;
+          photo.save();
+        }, this);
+
+        resolve();
+      }));
     }
   };
 };
