@@ -7,6 +7,7 @@ html
     meta(name='csrf-token', content=_csrf)
     title #{title} - Photo store
     link(rel='stylesheet', href='/css/landing-page.css')
+    link(rel='shortcut icon', href='/favicon.png')
 
   body
     div.home-image-wrapper
@@ -18,9 +19,18 @@ html
              a.button-signin(href="/login") Sign in
              a.button-signup(href="/signup") Sign up
        else
+          div.profile-details-wrapper
+             a.profile-link(href="/account")
+                img.profile-pic(src=`${user.profile.picture}`)
+             a.profile-name(href="/account")= `${user.profile.name}`
+             a.logout-link(href="/logout")   
+                i.logout-pic.fa.fa-sign-out
           div.button-wrapper
              a.button-discover(href="photo/hot") Discover
              a.button-profile(href="/upload") Upload
+          
+             
+
        
     script(src='/js/lib/jquery-2.2.4.min.js')
     script(src='/js/lib/bootstrap.min.js')
