@@ -29,23 +29,13 @@ const upload = multer({
             return cb(null, true);
         }
 
-<<<<<<< HEAD
         cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
     },
     limits: {
         fileSize: 1000000,
         files: 1
     }
-=======
-    cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
-  },
-  limits: {
-    fileSize: 30000000,
-    files: 1
-  }
->>>>>>> refs/remotes/origin/master
 });
-
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
