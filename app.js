@@ -76,11 +76,12 @@ const app = express();
 
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
-let users = [];
-let connections = [];
+
+const users = [];
+const connections = [];
 
 server.listen(process.env.PORT || 3000);
-console.log("Server running...");
+console.log('Server running...');
 
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public');
