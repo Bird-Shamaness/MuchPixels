@@ -4,7 +4,9 @@ block content
       each photo in photos
         div.single-photo-wrapper  
           h2.single-photo-heading= photo.title
-          p Posted by <span class="glyphicon glyphicon-user"></span> <a href="#">#{photo.author}</a> on <span class="glyphicon glyphicon-time"></span> #{photo.date}</p>
+          p Posted by <span class="glyphicon glyphicon-user"></span>
+            a(href=`/profile/${photo.author}`) #{photo.author}
+            span  on <span class="glyphicon glyphicon-time"></span> #{photo.date}</p>
           a(href=`/photo/details/${photo.id}`)
             img.single-image(src=`data:${photo.contentType};base64,${photo.data}`) 
           div.single-photo-description-wrapper
