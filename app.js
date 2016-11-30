@@ -260,7 +260,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), 3000, app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
 });
 
 module.exports = app;
