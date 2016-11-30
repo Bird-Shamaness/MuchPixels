@@ -82,6 +82,7 @@ const connections = [];
 
 server.listen(process.env.PORT || 3000);
 console.log('Server running...');
+
 app.get('/', function(req, res) {
     res.sendFile(__dirname + '/public');
 });
@@ -259,11 +260,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-<<<<<<< HEAD
     console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
-=======
-    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
->>>>>>> parent of 33bd828... Messenger implemented without database insertion and separation of concerns
 });
 
 module.exports = app;
