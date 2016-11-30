@@ -97,6 +97,13 @@ io.sockets.on('connection', function(socket) {
     connections.push(socket);
     console.log('Connected: %s sockets connnected', connections.length);
 
+ // Disconnect
+    socket.on('disconnect', function(data) {
+        users.splice(users.indexOf(socket.username), 1);
+        updateUsernames();
+        connections.splice(connections.indexOf(socket), 1);
+        console.log('Disconnected %s sockets connected', connections.length);
+    });
 
 //app.set('port', process.env.PORT || 3000); // in conflict with messenger server.listen/ Should be removed, logic extended in server.listen
 app.set('views', path.join(__dirname, 'views'));
