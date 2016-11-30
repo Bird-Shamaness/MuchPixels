@@ -1,18 +1,22 @@
-extends layout
-    head
-      link(rel='stylesheet', href='../public/css/messenger.css')
-      link(rel='stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
-
-block content
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    title Much Pixels Messenger
+    
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/messenger.css')
+body
+    h1 Much Pixels Messenger
     div.container
         div#userFormArea.row
             div.col-md-12
                 form#userForm
                     div.form-group
                         label Enter Username
-                        input#username.form-control
+                        input#username.form-control.input-lg
                         br
-                        button.btn.btn-primary(type='submit') Login
+                        button.btn.btn-success.btn-lg(type='submit') Login
 
         div#messageArea.row
             div.col-md-4
@@ -25,11 +29,11 @@ block content
                 form#messageForm
                     div.form-group
                         label Enter Message
-                        textarea#message.form-control
+                        textarea#message.form-control.input-lg
                         br
-                        button.btn.btn-primary(type='submit') Send Message
+                        button.btn.btn-success.btn-lg(type='submit') Send Message
 
 script(src='http://code.jquery.com/jquery-latest.min.js')
 script(src='/socket.io/socket.io.js')
-script(src='../utils/messenger-main.js')                                   
-        
+script(src='/messenger.js')                                
+              
