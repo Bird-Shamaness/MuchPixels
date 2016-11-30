@@ -2254,7 +2254,8 @@ a:link, a:visited, a:hover, a:active {
   letter-spacing: 0px;
   line-height: 1;
   text-align: center;
-  top: 2%; }
+  top: 2%;
+  padding-top: 10px; }
 
 .profile-pic {
   width: 70px;
