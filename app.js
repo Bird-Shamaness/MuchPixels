@@ -32,7 +32,7 @@ const upload = multer({
     cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
   },
   limits: {
-    fileSize: 1000000,
+    fileSize: 30000000,
     files: 1
   }
 });

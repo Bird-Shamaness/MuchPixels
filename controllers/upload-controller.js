@@ -1,4 +1,5 @@
-const fs = require('fs');
+const fs = require('fs'),
+  bufferConverter = require('../utils/buffer-converter');
 
 module.exports = function (data) {
   return {
@@ -35,10 +36,12 @@ module.exports = function (data) {
 
       const photoDestination = req.file.path;
 
-      data.createPhoto(fs.readFileSync(photoDestination), req.file.mimetype, req.user.username, req.body.title, req.body.description)
-        .then((photo) => {
+      bufferConverter.convertBufferTo64Array(fs.readFileSync(photoDestination))
+        .then((imageData) => {
           fs.unlinkSync(photoDestination);
-
+          return data.createPhoto(imageData, req.file.mimetype, req.user.username, req.body.title, req.body.description);
+        })
+        .then((photo) => {
           req.flash('success', {
             msg: 'Your photo was uploaded successfully.'
           });

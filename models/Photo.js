@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 //  Comment = require('./Comment');
 
 const photoSchema = new mongoose.Schema({
-  data: Buffer,
+  data: String,
   contentType: String,
   author: String,
   date: {
     type: Date,
     default: Date.now
   },
-  title:{
+  title: {
     type: String,
     required: true
   },
