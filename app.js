@@ -93,6 +93,10 @@ app.get('/messenger', function(req, res) { // тука е раута
 
 app.use(express.static(__dirname + '/public'));
 
+io.sockets.on('connection', function(socket) {
+    connections.push(socket);
+    console.log('Connected: %s sockets connnected', connections.length);
+
 
 //app.set('port', process.env.PORT || 3000); // in conflict with messenger server.listen/ Should be removed, logic extended in server.listen
 app.set('views', path.join(__dirname, 'views'));
