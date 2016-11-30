@@ -9,8 +9,6 @@
 - User 
   - Implement profile pic change (The user should be able to change his profile pic)
   - Implement description field 
-  - Implement user photos section
-- List beautiful page  
 - Fix styles of the whole page
 - Unit tests
 - Chat (optional)

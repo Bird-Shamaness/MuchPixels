@@ -5,32 +5,25 @@ const listCount = 5;
 module.exports = function (data) {
   return {
     getPhotoDetails(req, res) {
-      let foundPhoto = {};
-
       data.getPhotoById(req.params.id)
         .then((photo) => {
-          foundPhoto = photo;
-
-          return bufferConverter.convertBufferTo64Array(photo.data);
-        })
-        .then((convertedString) => {
           let canUpvote = false;
           if (req.user) {
-            canUpvote = !foundPhoto.upvotes.find(v => v.user === req.user.email);
+            canUpvote = !photo.upvotes.find(v => v.user === req.user.email);
           }
 
           const photoModel = {
-            contentType: foundPhoto.contentType,
-            data: convertedString,
+            contentType: photo.contentType,
+            data: photo.data,
             canUpvote,
-            votes: foundPhoto.upvotes.length,
-            comments: foundPhoto.comments,
-            date: foundPhoto.date,
-            author: foundPhoto.author,
-            id: foundPhoto._id,
+            votes: photo.upvotes.length,
+            comments: photo.comments,
+            date: photo.date,
+            author: photo.author,
+            id: photo._id,
             hasUser: !!req.user,
-            title: foundPhoto.title,
-            description: foundPhoto.description
+            title: photo.title,
+            description: photo.description
           };
 
           res.render('photo-details', {
@@ -43,7 +36,6 @@ module.exports = function (data) {
     },
     getHotPhotos(req, res) {
       data.getHotPhotos(listCount)
-        .then(photos => bufferConverter.convertCollectionOfBuffersto64Array(photos))
         .then((photos) => {
           res.render('photo-list', {
             photos
@@ -52,7 +44,6 @@ module.exports = function (data) {
     },
     getTrendingPhotos(req, res) {
       data.getTrendingPhotos(listCount)
-        .then(photos => bufferConverter.convertCollectionOfBuffersto64Array(photos))
         .then((photos) => {
           res.render('photo-list', {
             photos
@@ -81,22 +72,15 @@ module.exports = function (data) {
         });
     },
     getEdit(req, res) {
-      let foundPhoto;
-
       data.getPhotoById(req.params.id)
-        .then((photo) => {
-          if (photo.author !== req.user.email) {
+        .then((foundPhoto) => {
+          if (foundPhoto.author !== req.user.username) {
             res.redirect(`/photo/details/${req.params.id}`);
           }
 
-          foundPhoto = photo;
-
-          return bufferConverter.convertBufferTo64Array(photo.data);
-        })
-        .then((convertedString) => {
           const photoModel = {
             contentType: foundPhoto.contentType,
-            data: convertedString,
+            data: foundPhoto.data,
             description: foundPhoto.description,
             title: foundPhoto.title
           };

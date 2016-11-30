@@ -64,3 +64,19 @@ describe('GET /forgot', () => {
       .expect(200, done);
   });
 });
+
+describe('GET /photo/hot', () =>{
+  it('should return 200 OK', (done) =>{
+    request(app)
+        .get('/photo/hot')
+        .expect(200, done);
+  });
+});
+
+describe('GET /photo/trending', () =>{
+    it('should return 200 OK', (done) =>{
+        request(app)
+            .get('/photo/trending')
+            .expect(200, done);
+    });
+});
