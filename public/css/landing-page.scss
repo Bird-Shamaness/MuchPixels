@@ -1,3 +1,5 @@
+@import "lib/font-awesome/font-awesome";
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -30,18 +32,18 @@ a:link, a:visited, a:hover, a:active   {
   position: fixed;
   bottom: 35;
   width:100vw;
+  height: auto;
 }
 .button-discover, .button-signin, .button-signup, .button-profile{
-    display:inline-block;
     padding: 20px;
     position: relative;
     margin: 1%;
     margin-top:15%;
-    transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.0);
     border: 1px solid grey;
     color: white;
     link-style-type: none;
+    height: 5vh;
 }
 
 .button-discover:hover, .button-signin:hover , .button-signup:hover, .button-profile:hover{
@@ -50,7 +52,7 @@ a:link, a:visited, a:hover, a:active   {
 
 .header-title {
      position: relative;
-     color: rgba(255, 255, 255, 0.8); 
+     color: rgba(255, 255, 255, 0.7); 
      font-family: 'Helvetica Neue', sans-serif; 
      font-size: 150px; 
      font-weight: bold; 
@@ -71,10 +73,29 @@ a:link, a:visited, a:hover, a:active   {
      text-align: center; 
      top: 2%;
 }  
-  
 
-@media (max-width: 640px) {
-    .header-title {
+.profile-pic{
+   width: 70px;
+   border: 2px solid white;
+   border-radius: 40px;
+   overflow: hidden;
+}
+
+.profile-details-wrapper{
+    margin-top: 5%;
+}
+
+.profile-name{
+    display: block;
+    margin-top: 1%;
+}
+
+.logout-pics{
+  margin-top: 1%;
+}
+
+@media (max-width: 400px) and (max-height: 700px) and (orientation: portrait) {
+    .header-title { 
       font-size: 80px;
     }   
     .header-subtitle{
@@ -84,9 +105,85 @@ a:link, a:visited, a:hover, a:active   {
     .button-discover, .button-signin, .button-signup, .button-profile{
     margin-top:60%;
     }
+    .profile-details-wrapper{
+       margin-top: 40%;
+    }
  }
 
- @media (max-height: 640px){
+ @media (max-width: 700px) and (max-height: 400px) {
+    .header-title { 
+      font-size: 80px;
+    }   
+    .header-subtitle{
+      font-size: 15px;
+      top: 5%;
+    }
+    .button-discover, .button-signin, .button-signup, .button-profile{
+      margin-top:60%;
+    }
+    .profile-pic{
+      width: 25px;
+    }
+    .profile-name{
+      font-size: 13px;
+    }
+    .profile-details-wrapper{
+       margin-top: 5%;
+    }
+ }
+
+@media (min-width: 1000px) and (max-width: 1300px){
+      font-size: 30px;
+      top: 15%;
+}
+ 
+
+ @media (min-width: 1400px){
+    .header-title { 
+      font-size: 200px;
+    }   
+    .header-subtitle{
+      font-size: 40px;
+      top: 5%;
+    }
+    .button-discover, .button-signin, .button-signup, .button-profile{
+      margin-top:50%;
+    }
+    .profile-pic{
+      width: 60px;
+    }
+    .profile-name{
+      font-size: 13px;
+    }
+    .profile-details-wrapper{
+       margin-top: 15%;
+    }
+ }
+
+  @media (min-width: 2500px){
+    .header-title { 
+      font-size: 250px;
+    }   
+    .header-subtitle{
+      font-size: 50px;
+      top: 10%;
+    }
+    .button-discover, .button-signin, .button-signup, .button-profile{
+      margin-top:50%;
+      height: 100px;
+    }
+    .profile-pic{
+      width: 150px;
+    }
+    .profile-name{
+      font-size: 24px;
+    }
+    .profile-details-wrapper{
+       margin-top: 15%;
+    }
+ }
+
+ /*@media (max-height: 640px){
     .header-title {
       font-size: 80px;
     }   
@@ -95,13 +192,13 @@ a:link, a:visited, a:hover, a:active   {
       top: 10%;
     }
     .button-discover, .button-signin, .button-signup, .button-profile{
-    margin-top:60%;
+       margin-top:60%;
     }
- }
+ }*/
 
-  @media (max-width: 1024px){
+  /*@media (max-width: 1024px){
     .header-title {
-      font-size: 80px;
+      font-size: 150px;
     }   
     .header-subtitle{
       font-size: 15px;
@@ -123,4 +220,4 @@ a:link, a:visited, a:hover, a:active   {
     .button-discover, .button-signin, .button-signup, .button-profile{
     margin-top:60%;
     }
- }
+ }*/
