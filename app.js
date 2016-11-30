@@ -97,7 +97,7 @@ io.sockets.on('connection', function(socket) {
     connections.push(socket);
     console.log('Connected: %s sockets connnected', connections.length);
 
- // Disconnect
+    // Disconnect
     socket.on('disconnect', function(data) {
         users.splice(users.indexOf(socket.username), 1);
         updateUsernames();
@@ -109,6 +109,19 @@ io.sockets.on('connection', function(socket) {
     socket.on('send message', function(data) {
         io.sockets.emit('new message', { msg: data, user: socket.username });
     });
+
+    // New User 
+    socket.on('new user', function(data, callback) {
+        callback(true);
+        socket.username = data;
+        users.push(socket.username);
+        updateUsernames();
+    });
+
+    function updateUsernames() {
+        io.sockets.emit('get users', users)
+    }
+});
 
 //app.set('port', process.env.PORT || 3000); // in conflict with messenger server.listen/ Should be removed, logic extended in server.listen
 app.set('views', path.join(__dirname, 'views'));
