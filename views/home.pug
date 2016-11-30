@@ -8,6 +8,8 @@ html
     title #{title} - Photo store
     link(rel='stylesheet', href='/css/landing-page.css')
     link(rel='shortcut icon', href='/favicon.png')
+    
+    script(src='/js/lib/jquery-2.2.4.min.js')
 
   body
     div.home-image-wrapper
@@ -28,11 +30,20 @@ html
           div.button-wrapper
              a.button-discover(href="photo/hot") Discover
              a.button-profile(href="/upload") Upload
-          
-             
-
+    script.
+       $(document).ready( function(){
+         $('.header-title').animate({
+           opacity: '1',
+         }, 1500, function(){
+            $('.header-subtitle').animate({
+               opacity: '1',
+            }, 1500);
+            $('.profile-details-wrapper').animate({
+              opacity: '1',
+            }, 2000);
+         });      
+       });
        
-    script(src='/js/lib/jquery-2.2.4.min.js')
     script(src='/js/lib/bootstrap.min.js')
     script(src='/js/main.js')
 
