@@ -6,6 +6,8 @@ block content
       div.col-sm-12
         div.page-header
           h1= photoModel.title
+          if photoModel.canEdit
+            a.pull-right.glyphicon.glyphicon-edit.big(href=`/photo/edit/${photoModel.id}`) 
           p Posted by <span class="glyphicon glyphicon-user"></span>
             a(href=`/profile/${photoModel.author}`) #{photoModel.author}
             span  on <span class="glyphicon glyphicon-time"></span> #{photoModel.date}</p>

@@ -8,8 +8,12 @@ module.exports = function (data) {
       data.getPhotoById(req.params.id)
         .then((photo) => {
           let canUpvote = false;
+          let canEdit = false;
+
           if (req.user) {
             canUpvote = !photo.upvotes.find(v => v.user === req.user.email);
+
+            canEdit = photo.author === req.user.username || req.user.roles.indexOf('admin') > -1;
           }
 
           const photoModel = {
@@ -23,7 +27,8 @@ module.exports = function (data) {
             id: photo._id,
             hasUser: !!req.user,
             title: photo.title,
-            description: photo.description
+            description: photo.description,
+            canEdit
           };
 
           res.render('photo-details', {
