@@ -105,6 +105,11 @@ io.sockets.on('connection', function(socket) {
         console.log('Disconnected %s sockets connected', connections.length);
     });
 
+    // Send Message
+    socket.on('send message', function(data) {
+        io.sockets.emit('new message', { msg: data, user: socket.username });
+    });
+
 //app.set('port', process.env.PORT || 3000); // in conflict with messenger server.listen/ Should be removed, logic extended in server.listen
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
