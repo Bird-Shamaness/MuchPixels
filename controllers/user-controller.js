@@ -88,6 +88,17 @@ module.exports = function (data) {
             return res.redirect('/signup');
           }
 
+          return data.findUserByUsername(req.body.username);
+        })
+        .then((existingUser) => {
+          if (existingUser) {
+            req.flash('errors', {
+              msg: 'Account with that username already exists.'
+            });
+
+            return res.redirect('/signup');
+          }
+
           return data.registerUser(req.body.email, req.body.password, req.body.username);
         })
         .then((user) => {
@@ -125,7 +136,8 @@ module.exports = function (data) {
             profileName: req.body.name || user.profile.name,
             profileGender: req.body.gender || user.profile.gender,
             profileLocation: req.body.location || user.profile.location,
-            profileWebsite: req.body.website || user.profile.website
+            profileWebsite: req.body.website || user.profile.website,
+            username: req.body.username || user.username
           };
 
           return data.updateUserById(user.id, options);
@@ -139,7 +151,7 @@ module.exports = function (data) {
         .catch((err) => {
           if (err.code === 11000) {
             req.flash('errors', {
-              msg: 'The email address you have entered is already associated with an account.'
+              msg: 'The email address or username you have entered is already associated with an account.'
             });
             return res.redirect('/account');
           }

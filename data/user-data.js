@@ -96,6 +96,7 @@ module.exports = function (models) {
                   user.profile.gender = options.profileGender;
                   user.profile.location = options.profileLocation;
                   user.profile.website = options.profileWebsite;
+                  user.username = options.username;
 
                   user.save((err) => {
                       if (err) {
@@ -128,6 +129,19 @@ module.exports = function (models) {
                   if (err) {
                       reject(err);
                     }
+                });
+            });
+        },
+      findUserByUsername(username) {
+          return new Promise((resolve, reject) => {
+              User.findOne({
+                  username
+                }, (err, user) => {
+                  if (err) {
+                      reject(err);
+                    }
+
+                  resolve(user);
                 });
             });
         }
