@@ -10,7 +10,8 @@
   "license": "",
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "async": "^2.1.2",
