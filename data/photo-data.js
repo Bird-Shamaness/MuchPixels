@@ -32,23 +32,23 @@ module.exports = function (models) {
     getPhotoById(id) {
       return Photo.findById(id).exec();
     },
-    getHotPhotos(count) {
+    getHotPhotos(count, page) {
       const photos = Photo.find()
         .sort({
           upvotes: -1
         })
-        .limit(count);
+        .limit(count * page);
 
       return new Promise((resolve, reject) => {
         resolve(photos);
       });
     },
-    getTrendingPhotos(count) {
+    getTrendingPhotos(count, page) {
       const photos = Photo.find()
         .sort({
           date: -1
         })
-        .limit(count);
+        .limit(count * page);
 
       return new Promise((resolve, reject) => {
         resolve(photos);

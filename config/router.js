@@ -35,8 +35,11 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.get('/api/photo/:id/upvote', passportConfig.isAuthenticated, photoController.putUpvote);
   app.get('/api/photo/:id/unvote', passportConfig.isAuthenticated, photoController.removeUpvote);
 
-  app.get('/photo/hot', photoController.getHotPhotos);
-  app.get('/photo/trending', photoController.getTrendingPhotos);
+  app.get('/photo/hot', photoController.getType);
+  app.get('/photo/trending', photoController.getType);
+
+  app.get('/photo/hot/:page', photoController.getHotPhotos);
+  app.get('/photo/trending/:page', photoController.getTrendingPhotos);
 
   app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
   app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
@@ -45,6 +48,8 @@ module.exports = function (app, passportConfig, controllers, upload) {
 
   app.get('/error/non-existing-user', errorController.getNonExistingUser);
   app.get('/error/non-existing-photo', errorController.getNonExistingPhoto);
+
+  app.get('/api/:type/:page', photoController.getPaged);
 
   // OAuth authentication routes. (Sign in)
   app.get('/auth/instagram', passport.authenticate('instagram'));

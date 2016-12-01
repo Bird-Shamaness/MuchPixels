@@ -38,7 +38,7 @@ module.exports = function (data) {
         });
     },
     getHotPhotos(req, res) {
-      data.getHotPhotos(listCount)
+      data.getHotPhotos(listCount, 1)
         .then((photos) => {
           res.render('photo-list', {
             photos
@@ -46,7 +46,7 @@ module.exports = function (data) {
         });
     },
     getTrendingPhotos(req, res) {
-      data.getTrendingPhotos(listCount)
+      data.getTrendingPhotos(listCount, 1)
         .then((photos) => {
           res.render('photo-list', {
             photos
@@ -105,6 +105,32 @@ module.exports = function (data) {
         .then((photo) => {
           res.redirect(`/photo/details/${req.params.id}`);
         });
+    },
+    getPaged(req, res) {
+      const page = +req.params.page + 1;
+
+      if (req.params.type === 'trending') {
+        data.getTrendingPhotos(listCount, page)
+          .then((photos) => {
+            res.send;
+            res.render('photo-list', {
+              photos
+            });
+          });
+      } else {
+        data.getHotPhotos(listCount, page)
+          .then((photos) => {
+            res.send;
+            res.render('photo-list', {
+              photos
+            });
+          });
+      }
+    },
+    getType(req, res) {
+      const type = req.route.path.indexOf('trending') < 0 ? 'hot' : 'trending';
+
+      res.redirect(`/photo/${type}/1`);
     }
   };
 };

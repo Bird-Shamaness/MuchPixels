@@ -1,5 +1,14 @@
 $(document).ready(() => {
-  if (init) {
-    init();
+  try {
+    initVoter();
+  } catch (error) {
+
+  }
+
+
+  try {
+    initPager();
+  } catch (error) {
+
   }
 });

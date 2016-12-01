@@ -1,4 +1,4 @@
-const init = () => {
+let initVoter = () => {
   const pathname = window.location.pathname.split('/');
   const id = pathname[pathname.length - 1];
 
@@ -12,9 +12,9 @@ const init = () => {
     const url = `/api/photo/${id}/upvote`;
 
     requester.get(url)
-    .then((response) => {
-      $('body').html(response);
-    });
+      .then((response) => {
+        $('body').html(response);
+      });
   });
 
   $('.unvote').click(() => {
@@ -22,9 +22,9 @@ const init = () => {
     const url = `/api/photo/${id}/unvote`;
 
     requester.get(url)
-    .then((response) => {
-      $('body').html(response);
-    });
+      .then((response) => {
+        $('body').html(response);
+      });
   });
 
   $('#comment').click(() => {
@@ -34,9 +34,8 @@ const init = () => {
     $('#commentBox').html(spinner);
 
     requester.post(url, content)
-    .then((response) => {
-      $('body').html(response);
-    });
+      .then((response) => {
+        $('body').html(response);
+      });
   });
 };
-
