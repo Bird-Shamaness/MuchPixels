@@ -3,6 +3,7 @@ const Months = "JanFebMarAprMayJunJulAugSepOctNovDec";
 
 function convertTime(input) {
     let today = new Date();
+    input += "";
     input = input.split(' ');
 
     //Years
@@ -81,3 +82,8 @@ function convertTime(input) {
         return currentSeconds - second + ' seconds ago';
     }
 }
+
+module.exports.convertTime = (date) => new Promise((resolve, reject) => {
+        const convertedTime = convertTime(date);
+        resolve(convertedTime);
+});
