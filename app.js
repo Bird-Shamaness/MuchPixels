@@ -18,26 +18,26 @@ const multer = require('multer');
 const upload = multer({
   dest: path.join(__dirname, 'uploads'),
   fileFilter(req, file, cb) {
-      const filetypes = /jpeg|jpg|png/;
-      const mimetype = filetypes.test(file.mimetype);
+    const filetypes = /jpeg|jpg|png/;
+    const mimetype = filetypes.test(file.mimetype);
 
-      if (mimetype) {
-          return cb(null, true);
-        }
-
-      cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
-    },
-  limits: {
-      fileSize: 30000000,
-      files: 1
+    if (mimetype) {
+      return cb(null, true);
     }
+
+    cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
+  },
+  limits: {
+    fileSize: 30000000,
+    files: 1
+  }
 });
 
 // Load environment variables from .env file, where API keys and passwords are configured.
 if (!process.env.isProduction) {
   dotenv.load({
-      path: '.env.globals'
-    });
+    path: '.env.globals'
+  });
 }
 
 const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
@@ -52,6 +52,7 @@ const contactController = require('./controllers/contact-controller');
 const uploadController = require('./controllers/upload-controller')(data);
 const photoController = require('./controllers/photo-controller')(data);
 const profileController = require('./controllers/profile-controller')(data);
+const errorController = require('./controllers/error-controller');
 
 const controllers = {
   homeController,
@@ -59,7 +60,8 @@ const controllers = {
   contactController,
   uploadController,
   photoController,
-  profileController
+  profileController,
+  errorController
 };
 
 // Create express server
@@ -84,19 +86,19 @@ app.use(session({
   saveUninitialized: true,
   secret: process.env.SESSION_SECRET,
   store: new MongoStore({
-      url: process.env.MONGOLAB_URI || process.env.MONGODB_URI,
-      autoReconnect: true
-    })
+    url: process.env.MONGOLAB_URI || process.env.MONGODB_URI,
+    autoReconnect: true
+  })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
   if (req.path === '/upload') {
-      next();
-    } else {
-      lusca.csrf()(req, res, next);
-    }
+    next();
+  } else {
+    lusca.csrf()(req, res, next);
+  }
 });
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
@@ -105,17 +107,17 @@ app.use((req, res, next) => {
   next();
 });
 app.use((req, res, next) => {
-    // After successful login, redirect back to the intended page
+  // After successful login, redirect back to the intended page
   if (!req.user &&
-        req.path !== '/login' &&
-        req.path !== '/signup' &&
-        !req.path.match(/^\/auth/) &&
-        !req.path.match(/\./)) {
-      req.session.returnTo = req.path;
-    } else if (req.user &&
-        req.path == '/account') {
-      req.session.returnTo = req.path;
-    }
+    req.path !== '/login' &&
+    req.path !== '/signup' &&
+    !req.path.match(/^\/auth/) &&
+    !req.path.match(/\./)) {
+    req.session.returnTo = req.path;
+  } else if (req.user &&
+    req.path == '/account') {
+    req.session.returnTo = req.path;
+  }
   next();
 });
 app.use(express.static(path.join(__dirname, 'public'), {

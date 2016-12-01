@@ -1,5 +1,3 @@
-const bufferConverter = require('../utils/buffer-converter');
-
 module.exports = function (data) {
   return {
     getUserProfile(req, res) {
@@ -20,9 +18,7 @@ module.exports = function (data) {
             userModel
           });
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(err => res.redirect('/error/non-existing-user'));
     }
   };
 };

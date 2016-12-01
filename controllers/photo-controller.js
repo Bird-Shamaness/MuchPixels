@@ -1,5 +1,3 @@
-const bufferConverter = require('../utils/buffer-converter');
-
 const listCount = 5;
 
 module.exports = function (data) {
@@ -36,7 +34,7 @@ module.exports = function (data) {
           });
         })
         .catch((err) => {
-          console.log(err);
+          res.redirect('/error/non-existing-photo');
         });
     },
     getHotPhotos(req, res) {
