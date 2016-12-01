@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-//  Comment = require('./Comment');
 
 const photoSchema = new mongoose.Schema({
   data: String,
