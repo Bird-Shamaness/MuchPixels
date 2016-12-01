@@ -97,7 +97,7 @@ module.exports = function (data, passport) {
             return res.redirect('/signup');
           }
 
-          return data.registerUser(req.body.email, req.body.password, req.body.username);
+          return data.registerUser(req.body.email, req.body.password, req.body.username, req.body.description);
         })
         .then((user) => {
           req.logIn(user, (err) => {
