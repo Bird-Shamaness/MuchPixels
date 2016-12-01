@@ -29,5 +29,8 @@
 - Lock buttons when requested is sent!
 - Add a loading bar on upload
 - Chat (optional)
+  - Data layer TODO
+  - Messenger.pug must be modified to extend base layout.pug
+  - Extract and separate logic
 - Handle invalid data where it is not persistent
 - Seed base with more photos including not messy description and title 
