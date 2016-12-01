@@ -184,3 +184,42 @@ textarea {
 .fa {
   margin-right: 6px;
 }
+
+//User's view page 
+//
+.user-picture{
+  width: 50vh;
+  height: auto;
+}
+
+.title{
+  font-size: 3vw;
+}
+
+.subtitle{
+  font-size: 2vw;
+}
+
+.date-registered{
+  font-size: 1vw;
+}
+
+@media (max-width: 500px){
+  .date-registered{
+    display: none;
+  }
+}
+
+.picture-title{
+  color: #000000;
+  text-decoration: none;
+}
+
+.picture-title:hover{
+  color: #000000;
+  text-decoration: none;
+}
+
+.profile-pic{
+
+}

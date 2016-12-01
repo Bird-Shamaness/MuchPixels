@@ -12,8 +12,10 @@ module.exports = function (data) {
         })
         .then((userPhotos) => {
           const userModel = {
-            username: user.username,
-            photos: userPhotos
+            name: user.profile.name || user.username,
+            picture: user.profile.picture || user.gravatar,
+            photos: userPhotos, 
+            registered: user.createdAt
           };
 
           res.render('profile', {

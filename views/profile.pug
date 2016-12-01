@@ -1,6 +1,15 @@
 extends layout
 
 block content
-    p= userModel.username
-    each photo in userModel.photos
-        img.img-responsive(src=`data:${photo.contentType};base64,${photo.data}`)
+  div.container-fluid
+    img.profile-pic.col-xs-8.col-sm-5.col-md-3.col-lg-3.col-xl-4(src=`${userModel.picture}`)
+    p.title= userModel.name
+    p.date-registered= "Registered: " + userModel.registered
+  hr.profile-separator
+  each photo in userModel.photos
+    div.col-xs-12.col-sm-10.col-md-4.col-lg-4.col-xl-2
+        a.picture-title(href=`/photo/details/${photo.id}`)= photo.title
+        p.picture-data= "Uploaded On:" + `${photo.date}` 
+        a.link-to-picture(href=`/photo/details/${photo.id}`)
+          img.img-responsive(src=`data:${photo.contentType};base64,${photo.data}`)
+        p.picture-description= photo.description    
