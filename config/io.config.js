@@ -1,5 +1,4 @@
 const socketio = require('socket.io');
-console.log(socketio);
 
 const users = [];
 const connections = [];

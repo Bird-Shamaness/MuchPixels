@@ -1,3 +1,6 @@
+/**
+ * Loading dependancies
+ */
 const express = require('express');
 const compression = require('compression');
 const session = require('express-session');
@@ -15,9 +18,9 @@ const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 
-//
-//Multer configuration
-//
+/**
+ * Multer configuration
+ */
 const upload = multer({
   dest: path.join(__dirname, 'uploads'),
   fileFilter(req, file, cb) {
@@ -36,19 +39,29 @@ const upload = multer({
   }
 });
 
-// Load environment variables from .env file if in development mode, where API keys and passwords are configured
+/**
+* Load environment variables from .env file if in development mode, where API keys and passwords are configured
+*/
 if (!process.env.isProduction) {
   dotenv.load({
     path: '.env.globals'
   });
 }
 
+/**
+ * Establishing Mongo connection
+ */
 const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
 
-// API keys and Passport configuration.
+/**
+ * Loading pasport config file
+ */
 const passportConfig = require('./config/passport/passport'),
   passport = passportConfig.passport;
 
+/**
+ * Loading controllers
+ */
 const homeController = require('./controllers/home-controller');
 const userController = require('./controllers/user-controller')(data, passportConfig.passport);
 const contactController = require('./controllers/contact-controller');
@@ -69,7 +82,9 @@ const controllers = {
   messengerController
 };
 
-// Create express server
+/**
+ * Creating Express server.
+ */
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
@@ -129,15 +144,19 @@ app.use(express.static(path.join(__dirname, 'public'), {
   maxAge: 31557600000
 }));
 
-// Routing configuration
+/**
+ * Routing configuration
+ */
 require('./config/router')(app, passportConfig, controllers, upload);
 
-// Error Handler.
+/**
+ * Error handler
+ */
 app.use(errorHandler());
 
-//
-//Messenger configuration.
-//
+/**
+ * Socket io require configuration.
+ */
 const server = require('http').createServer(app);
 const io = require('./config/io.config.js').listen(server);
 
