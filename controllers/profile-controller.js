@@ -17,7 +17,7 @@ module.exports = function (data) {
             photos: userPhotos, 
             registered: user.createdAt
           };
-
+          
           res.render('profile', {
             userModel
           });
