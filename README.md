@@ -10,12 +10,11 @@
   - Implement profile pic change (The user should be able to change his profile pic)
   - Implement description field 
 - Fix styles of the whole page 
-  - Fix hot page styles
-  - Fix trending page styles
   - Fix user edit photo styles
   - Fix edit user styles
 - Unit tests
+- Lock buttons when requested is sent!
+- Add a loading bar on upload
 - Chat (optional)
 - Handle invalid data where it is not persistent
-- Use the variables from herokuapp
 - Seed base with more photos including not messy description and title 
