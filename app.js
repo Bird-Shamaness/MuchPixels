@@ -15,6 +15,9 @@ const expressStatusMonitor = require('express-status-monitor');
 const sass = require('node-sass-middleware');
 const multer = require('multer');
 
+//
+//Multer configuration
+//
 const upload = multer({
   dest: path.join(__dirname, 'uploads'),
   fileFilter(req, file, cb) {
@@ -33,7 +36,7 @@ const upload = multer({
   }
 });
 
-// Load environment variables from .env file, where API keys and passwords are configured.
+// Load environment variables from .env file if in development mode, where API keys and passwords are configured
 if (!process.env.isProduction) {
   dotenv.load({
     path: '.env.globals'
@@ -53,6 +56,7 @@ const uploadController = require('./controllers/upload-controller')(data);
 const photoController = require('./controllers/photo-controller')(data);
 const profileController = require('./controllers/profile-controller')(data);
 const errorController = require('./controllers/error-controller');
+const messengerController = require('./controllers/messenger-controller');
 
 const controllers = {
   homeController,
@@ -61,7 +65,8 @@ const controllers = {
   uploadController,
   photoController,
   profileController,
-  errorController
+  errorController,
+  messengerController
 };
 
 // Create express server
@@ -130,32 +135,21 @@ require('./config/router')(app, passportConfig, controllers, upload);
 // Error Handler.
 app.use(errorHandler());
 
-/**
- * Messenger configuration.
- */
-
+//
+//Messenger configuration.
+//
 const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 
 const users = [];
 const connections = [];
 
-// // server.listen(process.env.PORT);
-// console.log('Messenger Server running at port 3001...');
-
-
 app.start = app.listen = function(){
   return server.listen.apply(server, arguments)
 }
 
-
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public');
-});
-
-//  messenger logic
-app.get('/messenger', function(req, res) { // тука е раута
-  res.render("messenger");
 });
 
 app.use(express.static(__dirname + '/public'));
@@ -193,11 +187,8 @@ io.sockets.on('connection', function(socket) {
 /**
  * Start Express server.
  */
-// server.listen(app.get('port'), () => {
-//   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
-// });
-
-app.start(app.get('port'));
-console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+app.start(app.get('port'), () => {
+  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
+});
 
 module.exports = app;
