@@ -22,9 +22,13 @@ html
              a.button-signup(href="/signup") Sign up
        else
           div.profile-details-wrapper
-             a.profile-link(href="/account")
-                img.profile-pic(src=`${user.profile.picture}`)
-             a.profile-name(href="/account")= `${user.profile.name}`
+             if user.profile.picture
+              a.profile-link(href="/account")
+                  img.profile-pic(src=`${user.profile.picture}`)
+             else
+               a.profile-link(href="/account")
+                img(src=user.gravatar(60))
+             a.profile-name(href="/account")= `${user.profile.name || user.username}`
              a.logout-link(href="/logout")   
                 i.logout-pic.fa.fa-sign-out
           div.button-wrapper
