@@ -131,10 +131,73 @@ require('./config/router')(app, passportConfig, controllers, upload);
 app.use(errorHandler());
 
 /**
+ * Messenger configuration.
+ */
+
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+
+const users = [];
+const connections = [];
+
+// // server.listen(process.env.PORT);
+// console.log('Messenger Server running at port 3001...');
+
+
+app.start = app.listen = function(){
+  return server.listen.apply(server, arguments)
+}
+
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/public');
+});
+
+//  messenger logic
+app.get('/messenger', function(req, res) { // тука е раута
+  res.render("messenger");
+});
+
+app.use(express.static(__dirname + '/public'));
+
+io.sockets.on('connection', function(socket) {
+  connections.push(socket);
+  console.log('Connected: %s sockets connnected', connections.length);
+
+  // Disconnect
+  socket.on('disconnect', function(data) {
+    users.splice(users.indexOf(socket.username), 1);
+    updateUsernames();
+    connections.splice(connections.indexOf(socket), 1);
+    console.log('Disconnected %s sockets connected', connections.length);
+  });
+
+  // Send Message
+  socket.on('send message', function(data) {
+    io.sockets.emit('new message', { msg: data, user: socket.username });
+  });
+
+    // New User 
+  socket.on('new user', function(data, callback) {
+    callback(true);
+    socket.username = data;
+    users.push(socket.username);
+    updateUsernames();
+  });
+
+  function updateUsernames() {
+    io.sockets.emit('get users', users);
+  }
+});
+
+/**
  * Start Express server.
  */
-app.listen(app.get('port'), () => {
-  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
-});
+// server.listen(app.get('port'), () => {
+//   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
+// });
+
+app.start(app.get('port'));
+console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env'));
 
 module.exports = app;
