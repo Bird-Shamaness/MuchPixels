@@ -108,6 +108,15 @@ module.exports = function (models) {
 
         resolve();
       }));
+    },
+    getPhotoCount() {
+      return Photo.count({}, (err, count) => new Promise((resolve, reject) => {
+        if (err) {
+          reject(err);
+        }
+
+        resolve(count);
+      }));
     }
   };
 };
