@@ -65,18 +65,18 @@ describe('GET /forgot', () => {
   });
 });
 
-describe('GET /photo/hot', () =>{
-  it('should return 200 OK', (done) =>{
+describe('GET /photo/hot', () => {
+  it('should return 302 FOUND', (done) => {
     request(app)
-        .get('/photo/hot')
-        .expect(200, done);
+      .get('/photo/hot')
+      .expect(302, done);
   });
 });
 
-describe('GET /photo/trending', () =>{
-    it('should return 200 OK', (done) =>{
-        request(app)
-            .get('/photo/trending')
-            .expect(200, done);
-    });
+describe('GET /photo/trending', () => {
+  it('should return 302 FOUND', (done) => {
+    request(app)
+      .get('/photo/trending')
+      .expect(302, done);
+  });
 });
