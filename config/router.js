@@ -6,6 +6,7 @@ module.exports = function (app, passportConfig, controllers, upload) {
   const photoController = controllers.photoController;
   const profileController = controllers.profileController;
   const errorController = controllers.errorController;
+  const messengerController = controllers.messengerController;
 
   const passport = passportConfig.passport;
 
@@ -51,6 +52,8 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.get('/error/non-existing-photo', errorController.getNonExistingPhoto);
 
   app.get('/api/:type/:page', photoController.getPaged);
+
+  app.get('/messenger', messengerController.getMessenger);
 
   // OAuth authentication routes. (Sign in)
   app.get('/auth/instagram', passport.authenticate('instagram'));
