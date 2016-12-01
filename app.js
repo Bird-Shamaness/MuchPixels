@@ -20,28 +20,28 @@ const sass = require('node-sass-middleware');
 const multer = require('multer');
 
 const upload = multer({
-    dest: path.join(__dirname, 'uploads'),
-    fileFilter(req, file, cb) {
-        const filetypes = /jpeg|jpg|png/;
-        const mimetype = filetypes.test(file.mimetype);
+  dest: path.join(__dirname, 'uploads'),
+  fileFilter(req, file, cb) {
+      const filetypes = /jpeg|jpg|png/;
+      const mimetype = filetypes.test(file.mimetype);
 
-        if (mimetype) {
-            return cb(null, true);
+      if (mimetype) {
+          return cb(null, true);
         }
 
-        cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
+      cb(`Error: File upload only supports the following filetypes - ${filetypes}`);
     },
-    limits: {
-        fileSize: 30000000,
-        files: 1
+  limits: {
+      fileSize: 30000000,
+      files: 1
     }
 });
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
- */
-dotenv.load({
-    path: '.env.globals'
-});
+//  */
+// dotenv.load({
+//     path: '.env.globals'
+// });
 
 const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
 
@@ -110,7 +110,7 @@ const app = express();
 //         io.sockets.emit('new message', { msg: data, user: socket.username });
 //     });
 
-//     // New User 
+//     // New User
 //     socket.on('new user', function(data, callback) {
 //         callback(true);
 //         socket.username = data;
@@ -128,56 +128,56 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(compression());
 app.use(sass({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public')
+  src: path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public')
 }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
 app.use(expressValidator());
 app.use(session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET,
-    store: new MongoStore({
-        url: process.env.MONGOLAB_URI || process.env.MONGODB_URI,
-        autoReconnect: true
+  resave: true,
+  saveUninitialized: true,
+  secret: process.env.SESSION_SECRET,
+  store: new MongoStore({
+      url: process.env.MONGOLAB_URI || process.env.MONGODB_URI,
+      autoReconnect: true
     })
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use((req, res, next) => {
-    if (req.path === '/upload') {
-        next();
+  if (req.path === '/upload') {
+      next();
     } else {
-        lusca.csrf()(req, res, next);
+      lusca.csrf()(req, res, next);
     }
 });
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
-    res.locals.user = req.user;
-    next();
+  res.locals.user = req.user;
+  next();
 });
 app.use((req, res, next) => {
     // After successful login, redirect back to the intended page
-    if (!req.user &&
+  if (!req.user &&
         req.path !== '/login' &&
         req.path !== '/signup' &&
         !req.path.match(/^\/auth/) &&
         !req.path.match(/\./)) {
-        req.session.returnTo = req.path;
+      req.session.returnTo = req.path;
     } else if (req.user &&
         req.path == '/account') {
-        req.session.returnTo = req.path;
+      req.session.returnTo = req.path;
     }
-    next();
+  next();
 });
 app.use(express.static(path.join(__dirname, 'public'), {
-    maxAge: 31557600000
+  maxAge: 31557600000
 }));
 
 /**
@@ -222,31 +222,31 @@ app.get('/profile/:username', profileController.getUserProfile);
  */
 app.get('/auth/instagram', passport.authenticate('instagram'));
 app.get('/auth/instagram/callback', passport.authenticate('instagram', {
-    failureRedirect: '/login'
+  failureRedirect: '/login'
 }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
+  res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['email', 'user_location']
+  scope: ['email', 'user_location']
 }));
 app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-    failureRedirect: '/login'
+  failureRedirect: '/login'
 }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
+  res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/google', passport.authenticate('google', {
-    scope: 'profile email'
+  scope: 'profile email'
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
-    failureRedirect: '/login'
+  failureRedirect: '/login'
 }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
+  res.redirect(req.session.returnTo || '/');
 });
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', {
-    failureRedirect: '/login'
+  failureRedirect: '/login'
 }), (req, res) => {
-    res.redirect(req.session.returnTo || '/');
+  res.redirect(req.session.returnTo || '/');
 });
 
 
@@ -259,7 +259,7 @@ app.use(errorHandler());
  * Start Express server.
  */
 app.listen(app.get('port'), () => {
-    console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
+  console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')); // replaced app.get('port') with 3000, because after socket changes port was NaN
 });
 
 module.exports = app;
