@@ -1,12 +1,10 @@
 const async = require('async');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
-const passport = require('passport');
 
 const supportEmail = 'pixels_cust_sup@yahoo.com';
 
-module.exports = function (data) {
-
+module.exports = function (data, passport) {
   return {
     getLogin: (req, res) => {
       if (req.user) {

@@ -32,6 +32,8 @@ require('./google-strategy')(passport, User);
 // Sign in with Instagram.
 require('./instagram-strategy')(passport, User);
 
+exports.passport = passport;
+
 // Login Required middleware.
 exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
