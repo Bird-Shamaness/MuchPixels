@@ -17,7 +17,11 @@ body {
   margin: 0;
   padding-top: 60px;
   margin-bottom: 75px;
+  background-color: #F7F8FA;
 }
+
+ 
+
 
 .hot-photo-wrapper{
   padding: 0;
@@ -35,10 +39,11 @@ body {
   padding-right: 20px;
   padding-top: 15px;
   background-color: rgba(255, 255, 255, 0.9);
-  position: relative;
+  /*position: relative;
   width: 50%;
   margin: 0 auto;
-  margin-bottom: 15px;
+  margin-bottom: 15px;*/
+  margin-bottom: 1%;
   border: 1px solid #eaeaea;
   border-radius: 5px;
   background-color: #F7F8FA; 
@@ -53,6 +58,7 @@ body {
   font-size: 24px;
   text-align: left;
   color: #000000;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .single-photo-heading:hover{
@@ -61,12 +67,14 @@ body {
   color: #000000;
   text-decoration: none;
 }
+.single-photo-details{
+  font-family: "Courier New", Courier, monospace;
+}
 
 .single-photo-description-wrapper{
   margin-top: 5px;
   display: inline-block;
   width: 75%;
-  height: 60%;
   text-align: left;
   background-color: white;
   padding: 0%;
@@ -75,7 +83,8 @@ body {
 
 .single-photo-description{
   padding: 1%;
-  font-size: 18px;
+  font-size: 1.5vw;
+  font-family: "Courier New", Courier, monospace;
 }
 .single-photo-upvote-wrapper{
   display: inline-block;
@@ -101,10 +110,45 @@ body {
 
 .single-photo-votes{
   display: inline-block;
-  float:right;
+  float: left;
   margin-top:22px;
   margin-right:15px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  font-size: 1.3w;
 }
+
+.sharing-wrapper{
+  position:absolute;
+  top:0;
+  right: -30px;
+}
+
+.facebook-share{
+  position: absolute;
+  font-size: 3vw;
+  color: #3b5998;
+  top: 8vw;
+  left: -35px;
+}
+
+.google-share{
+  position: absolute;
+  font-size: 3vw;
+  color: #DD4D42;
+  top: 11vw;
+  left: -35px;
+}
+
+.twitter-share{
+  position: absolute;
+  font-size: 3vw;
+  color: #78C2F6;
+  top: 14vw;
+  left: -35px;
+}
+
+
 
 footer {
   position: relative;
@@ -191,28 +235,58 @@ textarea {
   width: 50vh;
   height: auto;
 }
+.picture-title{
+  font-size: 2vw;
+  margin-bottom: 1%;
+}
 
+.picture-date{
+   font-family: "Courier New", Courier, monospace;
+   font-size: 1vw;
+}
 .title{
   font-size: 3vw;
+   font-family: Verdana, Geneva, sans-serif;
 }
 
 .subtitle{
   font-size: 2vw;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.profile-pic{
+  border-radius: 5px;
+}
+
+.user-description{
+  font-family: "Courier New", Courier, monospace;
 }
 
 .date-registered{
   font-size: 1vw;
+  font-family: "Courier New", Courier, monospace; 
 }
 
 @media (max-width: 500px){
   .date-registered{
     display: none;
   }
+  .picture-date{
+    display:none;
+  }
+  .title{
+    font-size: 4vw;
+  }
+  .picture-title{
+    font-size: 15vw;
+  }
 }
 
 .picture-title{
   color: #000000;
+  font-size: 1.5vw;
   text-decoration: none;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .picture-title:hover{
@@ -220,6 +294,35 @@ textarea {
   text-decoration: none;
 }
 
-.profile-pic{
+.single-photo-other{
+  background-color: white;
+  overflow:hidden;
+  background-color: #eff0f2;
+  border: 1px solid #F7F8FA;
+  padding: 1%;
+}
 
+.picture-description{
+  margin-top: 1%;
+  height: auto;
+  overflow: hidden;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.picture-wrapper{
+  height: 200px;
+  overflow: hidden;
+  margin-top:1%;
+}
+
+.other-profile-wrapper{
+  background-color: #eff0f2;
+  padding: 1%;
+  border-radius: 3px;
+}
+
+.picture-votes{
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  float: right;
 }

@@ -1,15 +1,19 @@
 extends layout
 
 block content
-  div.container-fluid
-    img.profile-pic.col-xs-8.col-sm-5.col-md-3.col-lg-3.col-xl-4(src=`${userModel.picture}`)
+  div.other-profile-wrapper.container-fluid
+    img.profile-pic.col-xs-6.col-sm-5.col-md-3.col-lg-2.col-xl-4(src=`${userModel.picture}`)
     p.title= userModel.name
     p.date-registered= "Registered: " + userModel.registered
+    p.user-description= "I am a newbie photographer. I love travelling and exploring the world like Dora, the explorer! I love my job. "
   hr.profile-separator
+  p.subtitle= `All uploaded photos ( ${userModel.photos.length} )` 
   each photo in userModel.photos
-    div.col-xs-12.col-sm-10.col-md-4.col-lg-4.col-xl-2
-        a.picture-title(href=`/photo/details/${photo.id}`)= photo.title
-        p.picture-data= "Uploaded On:" + `${photo.date}` 
+    div.single-photo-other.col-xs-12.col-sm-10.col-md-4.col-lg-4.col-xl-2
+        a.picture-title(href=`/photo/details/${photo.id}`)= photo.title 
+        
         a.link-to-picture(href=`/photo/details/${photo.id}`)
-          img.img-responsive(src=`data:${photo.contentType};base64,${photo.data}`)
-        p.picture-description= photo.description    
+          div.picture-wrapper
+              img.img-responsive(src=`data:${photo.contentType};base64,${photo.data}`)
+        p.picture-description= `${photo.description.substring(0, 35)}...`   
+        p.picture-votes= `Influence: ${photo.upvotes.length}`   

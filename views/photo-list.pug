@@ -2,18 +2,23 @@ extends layout
 
 block content
       each photo in photos
-        div.single-photo-wrapper  
+        .single-photo-wrapper.col-xs-11.col-sm-8.col-md-7.col-xl-10
           a.single-photo-heading(href=`/photo/details/${photo.id}`)= photo.title
-          p Posted by <span class="glyphicon glyphicon-user"></span>
+          p.single-photo-details Posted by <span class="glyphicon glyphicon-user"></span>
             a(href=`/profile/${photo.author}`) #{photo.author}
             span  on <span class="glyphicon glyphicon-time"></span> #{photo.date}</p>
+          div.sharing-wrapper
+             a.facebook-share
+               i.fa.fa-facebook-official
+             a.google-share
+               i.fa.fa-google-plus-square
+             a.twitter-share
+               i.fa.fa-twitter-square
           a(href=`/photo/details/${photo.id}`)
             img.single-image(src=`data:${photo.contentType};base64,${photo.data}`) 
           div.single-photo-description-wrapper
-             h2.single-photo-description= photo.description
-          div.single-photo-upvote-wrapper
-             button.fa.fa-camera-retro.vote
-             h1.single-photo-votes= photo.votes
+             p.single-photo-description= `${photo.description.substring(0, 25)}...` 
+             p.single-photo-votes= "Influence: " + photo.upvotes.length
      
       script(src='/js/requester.js')
       script(src='/js/pager.js')
