@@ -36,12 +36,15 @@ const upload = multer({
       files: 1
     }
 });
+
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
 //  */
-// dotenv.load({
-//     path: '.env.globals'
-// });
+if (!process.env.isProduction) {
+  dotenv.load({
+      path: '.env.globals'
+    });
+}
 
 const data = require('./data')(process.env.MONGOLAB_URI || process.env.MONGODB_URI);
 
@@ -59,6 +62,8 @@ const profileController = require('./controllers/profile-controller')(data);
  * API keys and Passport configuration.
  */
 const passportConfig = require('./config/passport/passport');
+
+console.log(passportConfig);
 
 /**
  * Create Express server.
