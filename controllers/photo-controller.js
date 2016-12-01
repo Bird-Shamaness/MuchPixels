@@ -79,7 +79,9 @@ module.exports = function (data) {
     getEdit(req, res) {
       data.getPhotoById(req.params.id)
         .then((foundPhoto) => {
-          if (foundPhoto.author !== req.user.username) {
+          const canEdit = foundPhoto.author !== req.user.username || req.user.roles.indexOf('admin') > -1;
+
+          if (!canEdit) {
             res.redirect(`/photo/details/${req.params.id}`);
           }
 
