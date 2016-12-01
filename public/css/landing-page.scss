@@ -1,12 +1,16 @@
 @import "lib/font-awesome/font-awesome";
 
 html {
+  margin: 0;
+  padding: 0;
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%; }
+  -webkit-text-size-adjust: 100%; 
+  }
 
 body {
   margin: 0;
+  padding: 0;
 }
 
 .home-image-wrapper{
@@ -15,7 +19,6 @@ body {
       rgba(0, 0, 0, 0.6)
     ), url("../images/bg.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
-  -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; 
   height: 100vh;
@@ -55,13 +58,20 @@ a:link, a:visited, a:hover, a:active   {
      position: relative;
      color: rgba(255, 255, 255, 0.7); 
      font-family: 'Helvetica Neue', sans-serif; 
-     font-size: 150px; 
+     font-size: 149px; 
      font-weight: bold; 
      letter-spacing: -1px; 
      line-height: 1;
      text-align: center; 
      top: 20%;  
+  
 }  
+
+@-moz-document url-prefix() { 
+  .header-title {
+     margin-top: -1px;
+  }
+}
 
 .header-subtitle {
      opacity: 0;
@@ -74,7 +84,7 @@ a:link, a:visited, a:hover, a:active   {
      line-height: 1;
      text-align: center; 
      top: 2%;
-	 padding-top: 10px;
+	  padding-top: 10px;
 }  
 
 .profile-pic{
@@ -136,16 +146,16 @@ a:link, a:visited, a:hover, a:active   {
     }
  }
 
-@media (min-width: 1000px) and (max-width: 1300px){
-      font-size: 30px;
-      top: 15%;
-}
+  @media (min-width: 1000px) , (max-width: 1300px){
+  
+  
+  }
  
 
  @media (min-width: 1400px){
-    .header-title { 
+    /*.header-title { 
       font-size: 200px;
-    }   
+    }   */
     .header-subtitle{
       font-size: 40px;
       top: 5%;
