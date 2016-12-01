@@ -117,6 +117,11 @@ module.exports = function (models) {
 
         resolve(count);
       }));
+    },
+    deletePhoto(id) {
+      return Photo.remove({
+        _id: id
+      });
     }
   };
 };

@@ -91,6 +91,7 @@ module.exports = function (data) {
 
           const photoModel = {
             contentType: foundPhoto.contentType,
+            id: req.params.id,
             data: foundPhoto.data,
             description: foundPhoto.description,
             title: foundPhoto.title
@@ -140,6 +141,15 @@ module.exports = function (data) {
       const type = req.route.path.indexOf('trending') < 0 ? 'hot' : 'trending';
 
       res.redirect(`/photo/${type}/1`);
+    },
+    deletePhoto(req, res) {
+      data.deletePhoto(req.params.id)
+        .then(() => {
+          res.redirect('/photo/hot');
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   };
 };

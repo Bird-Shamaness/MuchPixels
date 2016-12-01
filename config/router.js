@@ -31,6 +31,10 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
   app.get('/photo/details/:id', photoController.getPhotoDetails);
+  app.get('/photo/delete/:id', passportConfig.isAuthenticated, photoController.deletePhoto);
+  app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
+  app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
+
   app.post('/api/photo/:id', passportConfig.isAuthenticated, photoController.postComment);
   app.get('/api/photo/:id/upvote', passportConfig.isAuthenticated, photoController.putUpvote);
   app.get('/api/photo/:id/unvote', passportConfig.isAuthenticated, photoController.removeUpvote);
@@ -40,9 +44,6 @@ module.exports = function (app, passportConfig, controllers, upload) {
 
   app.get('/photo/hot/:page', photoController.getHotPhotos);
   app.get('/photo/trending/:page', photoController.getTrendingPhotos);
-
-  app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
-  app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
 
   app.get('/profile/:username', profileController.getUserProfile);
 

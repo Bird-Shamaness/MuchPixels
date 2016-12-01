@@ -14,3 +14,5 @@ block content
             .col-sm-7
                 input.form-control(type='text', name='description', id='description', required, value=photo.title)
         button.btn.btn-primary(type='submit') Edit
+
+    a.pull-right.glyphicon.glyphicon-trash.big(href=`/photo/delete/${photo.id}`) Delete
