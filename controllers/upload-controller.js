@@ -46,6 +46,16 @@ module.exports = function (data, cloudinary) {
 
             res.redirect(`/photo/details/${photo._id}`);
           });
+      },
+      {
+        crop: 'limit',
+        width: 2000,
+        height: 2000,
+        eager: [
+           { width: 200, height: 200, crop: 'thumb', gravity: 'face',
+             radius: 20, effect: 'sepia' },
+          { width: 100, height: 150, crop: 'fit', format: 'png' }
+        ],         
       });
 
     }
