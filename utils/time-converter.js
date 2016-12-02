@@ -1,8 +1,7 @@
 const DaysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const Months = "JanFebMarAprMayJunJulAugSepOctNovDec";
 
-function convert(input) {
-    let today = new Date();
+function convert(input, today) {
     input += "";
     input = input.split(' ');
 
@@ -104,24 +103,21 @@ function convert(input) {
     }
 }
 
-module.exports.convertTime = (date) => new Promise((resolve, reject) => {
-    const convertedTime = convert(date);
+module.exports.convertTime = (date, today) => new Promise((resolve, reject) => {
+    const convertedTime = convert(date, today);
+
     resolve(convertedTime);
 });
 
-module.exports.convertMultiple = (photos) => new Promise((resolve, reject) => {
+module.exports.convertMultiple = (photos, today) => new Promise((resolve, reject) => {
     let convertedPhotos = [];
-    
 
-    
     for (photo of photos) {
-        console.log(photo.date);
-
         convertedPhotos.push({
             id: photo.id,
             title: photo.title,
             author: photo.author,
-            date: convert(photo.date),
+            date: convert(photo.date, today),
             contentType: photo.contentType,
             data: photo.data,
             description: photo.description,

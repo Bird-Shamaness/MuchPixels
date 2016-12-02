@@ -31,7 +31,7 @@ module.exports = function (data) {
                         canEdit
                     };
 
-                    return timeConverter.convertTime(photoModel.date);
+                    return timeConverter.convertTime(photoModel.date, new Date());
                 }).then((convertedTime) => {
                 photoModel.date = convertedTime;
 
@@ -46,7 +46,7 @@ module.exports = function (data) {
         getHotPhotos(req, res) {
             data.getHotPhotos(listCount, 1)
                 .then((photos) => {
-                    return timeConverter.convertMultiple(photos);
+                    return timeConverter.convertMultiple(photos, new Date());
                 })
                 .then((photos) => {
                     res.render('photo-list', {
@@ -57,7 +57,7 @@ module.exports = function (data) {
         getTrendingPhotos(req, res) {
             data.getTrendingPhotos(listCount, 1)
                 .then((photos) => {
-                    return timeConverter.convertMultiple(photos);
+                    return timeConverter.convertMultiple(photos, new Date());
                 })
                 .then((photos) => {
                     res.render('photo-list', {
