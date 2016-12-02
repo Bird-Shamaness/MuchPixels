@@ -21,7 +21,7 @@ block content
                 i
           div.image-wrapper
             a(href=`/photo/details/${photo.id}`)
-              img.single-image(src=`data:${photo.contentType};base64,${photo.data}`) 
+              img.single-image(src=`${photo.url}`) 
           div.single-photo-description-wrapper
              p.single-photo-description= `${photo.description.substring(0, 25)}...` 
              p.single-photo-votes= "Influence: " + photo.upvotes.length

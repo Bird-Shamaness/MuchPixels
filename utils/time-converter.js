@@ -118,8 +118,7 @@ module.exports.convertMultiple = (photos, today) => new Promise((resolve, reject
             title: photo.title,
             author: photo.author,
             date: convert(photo.date, today),
-            contentType: photo.contentType,
-            data: photo.data,
+            url: photo.url,
             description: photo.description,
             upvotes: photo.upvotes
         });

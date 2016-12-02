@@ -14,7 +14,7 @@ block content
     div.row
       div.col-sm-8
         figure.margin-b-2
-          img.img-responsive(src=`data:${photoModel.contentType};base64,${photoModel.data}`)
+          img.img-responsive(src=`${photoModel.url}`)
         
         h3= photoModel.votes + ' votes'
         div.voting

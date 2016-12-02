@@ -16,8 +16,6 @@ module.exports = function (models) {
       });
     },
     createPhoto(url, author, title, description) {
-      console.log(url);
-
       return new Promise((resolve, reject) => {
         const photo = new Photo({
           url,

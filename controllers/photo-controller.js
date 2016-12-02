@@ -17,8 +17,7 @@ module.exports = function (data) {
                     }
 
                     photoModel = {
-                        contentType: photo.contentType,
-                        data: photo.data,
+                        url: photo.url,
                         canUpvote,
                         votes: photo.upvotes.length,
                         comments: photo.comments,
@@ -33,12 +32,12 @@ module.exports = function (data) {
 
                     return timeConverter.convertTime(photoModel.date, new Date());
                 }).then((convertedTime) => {
-                photoModel.date = convertedTime;
+                    photoModel.date = convertedTime;
 
-                res.render('photo-details', {
-                    photoModel
-                });
-            })
+                    res.render('photo-details', {
+                        photoModel
+                    });
+                })
                 .catch((err) => {
                     res.redirect('/error/non-existing-photo');
                 });
@@ -90,16 +89,14 @@ module.exports = function (data) {
             data.getPhotoById(req.params.id)
                 .then((foundPhoto) => {
                     const canEdit = foundPhoto.author === req.user.username || req.user.roles.indexOf('admin') > -1;
-                    console.log(foundPhoto.author);
-                    console.log(req.user);
+
                     if (!canEdit) {
                         res.redirect(`/photo/details/${req.params.id}`);
                     }
 
                     const photoModel = {
-                        contentType: foundPhoto.contentType,
+                        url: foundPhoto.url,
                         id: req.params.id,
-                        data: foundPhoto.data,
                         description: foundPhoto.description,
                         title: foundPhoto.title
                     };

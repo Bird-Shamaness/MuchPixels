@@ -14,6 +14,6 @@ block content
         
         a.link-to-picture(href=`/photo/details/${photo.id}`)
           div.picture-wrapper
-              img.img-responsive(src=`data:${photo.contentType};base64,${photo.data}`)
+              img.img-responsive(src=`${photo.url}`)
         p.picture-description= `${photo.description.substring(0, 35)}...`   
         p.picture-votes= `Influence: ${photo.upvotes.length}`   

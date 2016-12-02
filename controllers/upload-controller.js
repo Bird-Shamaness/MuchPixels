@@ -1,5 +1,4 @@
-const fs = require('fs'),
-  bufferConverter = require('../utils/buffer-converter');
+const fs = require('fs');
 
 module.exports = function (data, cloudinary) {
   return {
@@ -34,7 +33,6 @@ module.exports = function (data, cloudinary) {
         return res.redirect('/upload');
       }
 
-      let url = '';
       const photoDestination = req.file.path;
 
       cloudinary.uploader.upload(photoDestination, function (result) {
@@ -44,11 +42,12 @@ module.exports = function (data, cloudinary) {
               msg: 'Your photo was uploaded successfully.'
             });
 
+            fs.unlinkSync(photoDestination);
+
             res.redirect(`/photo/details/${photo._id}`);
           });
       });
 
-      fs.unlinkSync(photoDestination);
     }
   };
 };
