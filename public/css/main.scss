@@ -20,7 +20,9 @@ body {
   background-color: #F7F8FA;
 } 
 
-
+/**
+* Styles of listing photo pages (hot, trending)
+*/
 .hot-photo-wrapper{
   padding: 0;
   padding-top:1%; 
@@ -37,17 +39,24 @@ body {
   padding-right: 20px;
   padding-top: 15px;
   background-color: rgba(255, 255, 255, 0.9);
-  /*position: relative;
-  width: 50%;
-  margin: 0 auto;
-  margin-bottom: 15px;*/
   margin-bottom: 1%;
   border: 1px solid #eaeaea;
   border-radius: 5px;
   background-color: #F7F8FA; 
+  height:  75vh;
+  text-align: center;
 }
-
+.image-wrapper{
+  height: 40vh; 
+  width: 100%;
+  overflow: hidden;
+  background-color: #F7F8FA;
+}
 .single-image{
+  object-fit: cover;
+  zoom: 1;
+ /* height: 100%;
+  height: auto;*/
   max-width:100%;
   max-height:100%;
 }
@@ -146,23 +155,26 @@ body {
   left: -35px;
 }
 
-
-
-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 45px;
-  line-height: 45px;
-
-  p, ul {
-    margin-bottom: 0;
-  }
+.comment-box{
+  position: absolute;
+  font-size: 3vw;
+  color: #33b233;
+  top: 5vw;
+  left: -35px;
 }
-// Input Fields
-// -------------------------
+
+.facebook-share:hover, .comment-box:hover, .twitter-share:hover, .google-share:hover{
+  color: rgba(0, 0, 0, 0.4);
+  left: -20px;
+}
+
+
+
+/**
+* Upload page
+*/
 textarea {
-  resize: vertical;
+  resize: none;
 }
 
 .upload-wrapper,
@@ -191,9 +203,10 @@ textarea {
   width: 100%;
   margin-top: 1%;
 }
-// Navbar
-// -------------------------
 
+/**
+* Overwriting navbar styles
+*/
 .navbar-nav img {
   width: 30px;
   height: 30px;
@@ -214,15 +227,16 @@ textarea {
 }
 
 
-// Alerts
-// -------------------------
-
+/**
+* Alerts
+*/
 .alert {
   margin-top: 20px;
 }
 
-// Thumbnails
-// -------------------------
+/**
+* Other user profile page
+*/
 
 .thumbnail {
   padding: 0;
@@ -230,15 +244,35 @@ textarea {
   box-shadow: 0 0 5px #ccc, inset 0 0 0 #000;
 }
 
-// Font Icons
-// -------------------------
-
+/**
+* Icons
+*/
 .fa {
   margin-right: 6px;
 }
 
-//User's view page 
-//
+/**
+* User profile page
+*/
+#description{
+  height: 150px;
+  resize: none;
+}
+
+/**
+* Other user profile page
+*/
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+
+  p, ul {
+    margin-bottom: 0;
+  }
+}
 .user-picture{
   width: 50vh;
   height: auto;
@@ -333,4 +367,20 @@ textarea {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   float: right;
+}
+
+
+/**
+* Footer styles
+*/
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+
+  p, ul {
+    margin-bottom: 0;
+  }
 }

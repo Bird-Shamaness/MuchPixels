@@ -137,7 +137,8 @@ module.exports = function (data, passport) {
             profileGender: req.body.gender || user.profile.gender,
             profileLocation: req.body.location || user.profile.location,
             profileWebsite: req.body.website || user.profile.website,
-            username: req.body.username || user.username
+            username: req.body.username || user.username,
+            description: req.body.description || user.description
           };
 
           oldUsername = user.username;

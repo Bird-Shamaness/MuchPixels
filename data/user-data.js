@@ -98,12 +98,17 @@ module.exports = function (models) {
                     user.profile.location = options.profileLocation;
                     user.profile.website = options.profileWebsite;
                     user.username = options.username;
+                    user.description = options.description;
+
+                    console.log(options);
 
                     user.save((err) => {
                         if (err) {
                             reject(err);
                         }
 
+                        console.log(user);
+                        
                         resolve(user);
                     });
                 });

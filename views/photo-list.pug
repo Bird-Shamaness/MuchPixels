@@ -8,14 +8,20 @@ block content
             a(href=`/profile/${photo.author}`) #{photo.author}
             span  on <span class="glyphicon glyphicon-time"></span> #{photo.date}</p>
           div.sharing-wrapper
-             a.facebook-share
-               i.fa.fa-facebook-official
-             a.google-share
-               i.fa.fa-google-plus-square
-             a.twitter-share
-               i.fa.fa-twitter-square
-          a(href=`/photo/details/${photo.id}`)
-            img.single-image(src=`data:${photo.contentType};base64,${photo.data}`) 
+              a.facebook-share
+                i.fa.fa-facebook-official
+              a.google-share
+                i.fa.fa-google-plus-square
+              a.twitter-share
+                i.fa.fa-twitter-square
+              if user
+                a.comment-box(href=`/photo/details/${photo.id}`)
+                  i.fa.fa-comment
+              else
+                i
+          div.image-wrapper
+            a(href=`/photo/details/${photo.id}`)
+              img.single-image(src=`data:${photo.contentType};base64,${photo.data}`) 
           div.single-photo-description-wrapper
              p.single-photo-description= `${photo.description.substring(0, 25)}...` 
              p.single-photo-votes= "Influence: " + photo.upvotes.length
