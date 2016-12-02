@@ -43,14 +43,17 @@ module.exports = function (data) {
           res.redirect('/error/non-existing-photo');
         });
     },
-    getHotPhotos(req, res) {
-      data.getHotPhotos(listCount, 1)
-        .then((photos) => {
-          res.render('photo-list', {
-            photos
-          });
-        });
-    },
+      getHotPhotos(req, res) {
+          data.getHotPhotos(listCount, 1)
+              .then((photos) => {
+                  return timeConverter.convertMultiple(photos);
+              })
+              .then((photos) => {
+                  res.render('photo-list', {
+                      photos
+                  });
+              });
+      },
     getTrendingPhotos(req, res) {
       data.getTrendingPhotos(listCount, 1)
         .then((photos) => {
