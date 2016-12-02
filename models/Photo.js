@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
 const photoSchema = new mongoose.Schema({
-  data: String,
-  contentType: String,
+  url: {
+    type: String,
+    required: true
+  },
   author: String,
   date: {
     type: Date,

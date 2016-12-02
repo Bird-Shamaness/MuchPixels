@@ -1,7 +1,7 @@
 const fs = require('fs'),
   bufferConverter = require('../utils/buffer-converter');
 
-module.exports = function (data) {
+module.exports = function (data, cloudinary) {
   return {
     getPhotoUpload(req, res) {
       if (!req.user) {
@@ -34,20 +34,21 @@ module.exports = function (data) {
         return res.redirect('/upload');
       }
 
+      let url = '';
       const photoDestination = req.file.path;
 
-      bufferConverter.convertBufferTo64Array(fs.readFileSync(photoDestination))
-        .then((imageData) => {
-          fs.unlinkSync(photoDestination);
-          return data.createPhoto(imageData, req.file.mimetype, req.user.username, req.body.title, req.body.description);
-        })
-        .then((photo) => {
-          req.flash('success', {
-            msg: 'Your photo was uploaded successfully.'
-          });
+      cloudinary.uploader.upload(photoDestination, function (result) {
+        data.createPhoto(result.url, req.user.username, req.body.title, req.body.description)
+          .then((photo) => {
+            req.flash('success', {
+              msg: 'Your photo was uploaded successfully.'
+            });
 
-          res.redirect(`/photo/details/${photo._id}`);
-        });
+            res.redirect(`/photo/details/${photo._id}`);
+          });
+      });
+
+      fs.unlinkSync(photoDestination);
     }
   };
 };

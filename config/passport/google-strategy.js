@@ -7,7 +7,6 @@ module.exports = function (passport, User) {
     callbackURL: '/auth/google/callback',
     passReqToCallback: true
   }, (req, accessToken, refreshToken, profile, done) => {
-    console.log(profile);
     if (req.user) {
       User.findOne({
         google: profile.id

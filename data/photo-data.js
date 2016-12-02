@@ -15,11 +15,12 @@ module.exports = function (models) {
         });
       });
     },
-    createPhoto(data, contentType, author, title, description) {
+    createPhoto(url, author, title, description) {
+      console.log(url);
+
       return new Promise((resolve, reject) => {
         const photo = new Photo({
-          data,
-          contentType,
+          url,
           author,
           title,
           description

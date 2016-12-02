@@ -40,13 +40,15 @@ const upload = multer({
 });
 
 /**
-* Load environment variables from .env file if in development mode, where API keys and passwords are configured
-*/
+ * Load environment variables from .env file if in development mode, where API keys and passwords are configured
+ */
 if (!process.env.isProduction) {
   dotenv.load({
     path: '.env.globals'
   });
 }
+
+const cloudinary = require('cloudinary');
 
 /**
  * Establishing Mongo connection
@@ -65,7 +67,7 @@ const passportConfig = require('./config/passport/passport'),
 const homeController = require('./controllers/home-controller');
 const userController = require('./controllers/user-controller')(data, passportConfig.passport);
 const contactController = require('./controllers/contact-controller');
-const uploadController = require('./controllers/upload-controller')(data);
+const uploadController = require('./controllers/upload-controller')(data, cloudinary);
 const photoController = require('./controllers/photo-controller')(data);
 const profileController = require('./controllers/profile-controller')(data);
 const errorController = require('./controllers/error-controller');
@@ -160,11 +162,11 @@ app.use(errorHandler());
 const server = require('http').createServer(app);
 const io = require('./config/io.config.js').listen(server);
 
-app.start = app.listen = function(){
+app.start = app.listen = function () {
   return server.listen.apply(server, arguments)
 }
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.sendFile(__dirname + '/public');
 });
 
