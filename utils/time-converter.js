@@ -46,6 +46,27 @@ function convert(input) {
         return currentMonth - month + ' months ago';
     }
 
+    //Days
+    let days = input[2];
+    let currentDay = today.getDate();
+    let daysPassed = currentDay - days;
+
+    if (daysPassed > 0) {
+        if (daysPassed < 7) {
+            if (daysPassed == 1) {
+                return "1 day ago";
+            }
+            return daysPassed + ' days ago';
+        }
+
+        let weeksPassed = daysPassed / 7;
+        weeksPassed = Math.round(weeksPassed);
+        if (weeksPassed == 1) {
+            return "1 week ago";
+        }
+        return weeksPassed + " weeks ago";
+    }
+
     //Hours
     let time = input[4];
     time = time.split(':');
