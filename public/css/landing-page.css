@@ -2218,7 +2218,8 @@ a:link, a:visited, a:hover, a:active {
   position: fixed;
   bottom: 35;
   width: 100vw;
-  height: auto; }
+  height: auto;
+  opacity: 0; }
 
 .button-discover, .button-signin, .button-signup, .button-profile {
   padding: 20px;

@@ -13,6 +13,7 @@ module.exports = function (data) {
             name: user.profile.name || user.username,
             picture: user.profile.picture || user.gravatar,
             photos: userPhotos, 
+            description: user.description,
             registered: user.createdAt
           };
 

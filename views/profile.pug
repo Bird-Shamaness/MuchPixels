@@ -5,7 +5,7 @@ block content
     img.profile-pic.col-xs-6.col-sm-5.col-md-3.col-lg-2.col-xl-4(src=`${userModel.picture}`)
     p.title= userModel.name
     p.date-registered= "Registered: " + userModel.registered
-    p.user-description= "I am a newbie photographer. I love travelling and exploring the world like Dora, the explorer! I love my job. "
+    p.user-description= userModel.description
   hr.profile-separator
   p.subtitle= `All uploaded photos ( ${userModel.photos.length} )` 
   each photo in userModel.photos
