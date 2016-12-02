@@ -133,33 +133,40 @@ body {
 
 .facebook-share{
   position: absolute;
-  font-size: 3vw;
+  font-size: 40px;
   color: #3b5998;
-  top: 8vw;
+  top: 95px;
   left: -35px;
+}
+
+@media (max-width: 600px){
+  .facebook-share{
+    width: 35px;
+    overflow: hidden;
+  }
 }
 
 .google-share{
   position: absolute;
-  font-size: 3vw;
+  font-size: 40px;
   color: #DD4D42;
-  top: 11vw;
+  top: 150px;
   left: -35px;
 }
 
 .twitter-share{
   position: absolute;
-  font-size: 3vw;
+  font-size: 40px;
   color: #78C2F6;
-  top: 14vw;
+  top: 190px;
   left: -35px;
 }
 
 .comment-box{
   position: absolute;
-  font-size: 3vw;
+  font-size: 40px;
   color: #33b233;
-  top: 5vw;
+  top: 70px;
   left: -35px;
 }
 
@@ -167,8 +174,6 @@ body {
   color: rgba(0, 0, 0, 0.4);
   left: -20px;
 }
-
-
 
 /**
 * Upload page
