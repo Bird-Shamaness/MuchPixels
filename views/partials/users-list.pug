@@ -1,0 +1,11 @@
+each user in users
+ div.other-profile-wrapper.container-fluid
+  
+  img.profile-pic.col-xs-6.col-sm-5.col-md-3.col-lg-2.col-xl-4(src=`${user.profile.picture || user.gravatar}`)
+  a(href=`/profile/${user.username}`)
+    p.title= (user.profile.name || user.username)
+  p.date-registered= "Registered: " + user.createdAt
+  p.user-description= user.description
+ hr.profile-separator
+ p.subtitle= `All uploaded photos ( ${user.photos.length} )` 
+  

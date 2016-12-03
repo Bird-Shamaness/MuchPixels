@@ -11,4 +11,11 @@ $(document).ready(() => {
   } catch (error) {
 
   }
+
+
+  try {
+    initSearcher();
+  } catch (error) {
+
+  }
 });

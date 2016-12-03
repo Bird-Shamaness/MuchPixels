@@ -1,7 +1,7 @@
 module.exports = function (app, passportConfig, controllers, upload) {
   /**
-  * Loading controllers
-  */
+   * Loading controllers
+   */
   const homeController = controllers.homeController;
   const userController = controllers.userController;
   const contactController = controllers.contactController;
@@ -10,15 +10,16 @@ module.exports = function (app, passportConfig, controllers, upload) {
   const profileController = controllers.profileController;
   const errorController = controllers.errorController;
   const messengerController = controllers.messengerController;
+  const searchController = controllers.searchController;
 
   /**
-  * Loading passport configuration
-  */
+   * Loading passport configuration
+   */
   const passport = passportConfig.passport;
 
   /**
-  * Authentication routes
-  */
+   * Authentication routes
+   */
   app.get('/', homeController.index);
   app.get('/login', userController.getLogin);
   app.post('/login', userController.postLogin);
@@ -29,31 +30,35 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.post('/reset/:token', userController.postReset);
   app.get('/signup', userController.getSignup);
   app.post('/signup', userController.postSignup);
-  
+
   /**
-  * Contact routes
-  */
+   * Contact routes
+   */
   app.get('/contact', contactController.getContact);
   app.post('/contact', contactController.postContact);
-  
+
   /**
-  * Account routes 
-  */
+   * Account routes 
+   */
   app.get('/account', passportConfig.isAuthenticated, userController.getAccount);
   app.post('/account/profile', passportConfig.isAuthenticated, userController.postUpdateProfile);
   app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
   app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
   app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
+  app.get('/search', searchController.index);
+  app.get('/api/search/photos/:pattern', searchController.searchPhotos);
+  app.get('/api/search/users/:pattern', searchController.searchUsers);
+
   /**
-  * Upload routes
-  */
+   * Upload routes
+   */
   app.get('/upload', uploadController.getPhotoUpload);
   app.post('/upload', upload.single('myFile'), uploadController.postPhotoUpload);
 
   /**
-  * Photo routes
-  */
+   * Photo routes
+   */
   app.get('/photo/details/:id', photoController.getPhotoDetails);
   app.get('/photo/delete/:id', passportConfig.isAuthenticated, photoController.deletePhoto);
   app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
@@ -72,24 +77,24 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.get('/profile/:username', profileController.getUserProfile);
 
   /**
-  * Error routes
-  */
+   * Error routes
+   */
   app.get('/error/non-existing-user', errorController.getNonExistingUser);
   app.get('/error/non-existing-photo', errorController.getNonExistingPhoto);
 
   /**
-  * Paging photos routes
-  */
+   * Paging photos routes
+   */
   app.get('/api/:type/:page', photoController.getPaged);
 
   /**
-  * Messenger routes
-  */
+   * Messenger routes
+   */
   app.get('/messenger', messengerController.getMessenger);
 
   /**
-  * OAuth authentication routes. (Sign in)
-  */ 
+   * OAuth authentication routes. (Sign in)
+   */
   app.get('/auth/instagram', passport.authenticate('instagram'));
   app.get('/auth/instagram/callback', passport.authenticate('instagram', {
     failureRedirect: '/login'
