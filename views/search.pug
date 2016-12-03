@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .page-header
+    h3 Search
+
+    div#search-box
+           div.well
+              input.form-control(type='text', name='pattern', id='pattern', required)
+              button.btn.btn-default#search-photos Photos
+              button.btn.btn-default#search-users Users
+
+    div#results
+
+  script(src='/js/requester.js')
+  script(src='/js/searcher.js')

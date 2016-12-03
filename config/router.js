@@ -46,8 +46,9 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
   app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
-  app.get('/search/photos/:pattern', searchController.searchPhotos);
-  app.get('/search/users/:pattern', searchController.searchUsers);
+  app.get('/search', searchController.index);
+  app.get('/api/search/photos/:pattern', searchController.searchPhotos);
+  app.get('/api/search/users/:pattern', searchController.searchUsers);
 
   /**
    * Upload routes
