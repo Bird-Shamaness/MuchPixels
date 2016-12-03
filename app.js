@@ -120,8 +120,8 @@ app.use(flash());
 app.use((req, res, next) => {
   if (req.path === '/upload') {
     next();
-  } else if(req.path === '/messenger') {
-    next();
+  } else if (req.path === '/messenger') {
+
   } else {
     lusca.csrf()(req, res, next);
   }
