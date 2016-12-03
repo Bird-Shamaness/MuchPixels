@@ -8,7 +8,7 @@ module.exports = function (data) {
 
             data.searchPhotos(pattern)
                 .then(photos => {
-                    res.render('photo-list', {
+                    res.render('partials/photos-list', {
                         photos
                     });
                 });
@@ -18,7 +18,7 @@ module.exports = function (data) {
 
             data.searchUsers(pattern)
                 .then(users => {
-                    res.render('user-list', {
+                    res.render('partials/users-list', {
                         users
                     });
                 });
