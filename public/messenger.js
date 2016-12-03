@@ -35,7 +35,7 @@
      socket.on('get users', function(data) {
          let html = '';
          for (i = 0; i < data.length; i++) {
-             html += '<li class="list-group-item"><div id="advanced"></div>' + data[i] + '</li>';
+             html += '<li class="list-group-item"><div id="online-dot"></div>' + data[i] + '</li>';
          }
          $users.html(html);
      });
