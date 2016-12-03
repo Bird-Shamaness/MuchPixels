@@ -6,9 +6,15 @@ module.exports = function (models) {
 
     return {
         searchPhotos(pattern) {
+            var regex = new RegExp(pattern, 'i');
+
             return new Promise((resolve, reject) => {
                 Photo.find({
-                        'title': new RegExp(pattern, 'i')
+                        $or: [{
+                            'title': regex
+                        }, {
+                            'description': regex
+                        }]
                     },
                     (err, photos) => {
 
@@ -21,9 +27,17 @@ module.exports = function (models) {
             });
         },
         searchUsers(pattern) {
+            var regex = new RegExp(pattern, 'i');
+
             return new Promise((resolve, reject) => {
                 User.find({
-                        'username': new RegExp(pattern, 'i')
+                        $or: [{
+                            'username': regex
+                        }, {
+                            'description': regex
+                        }, {
+                            'name': regex
+                        }]
                     },
                     (err, users) => {
 
