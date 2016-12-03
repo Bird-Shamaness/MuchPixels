@@ -1,24 +1,27 @@
-each photo in photos
-        .single-photo-wrapper.col-xs-11.col-sm-8.col-md-7.col-xl-10
-          a.single-photo-heading(href=`/photo/details/${photo.id}`)= photo.title
-          p.single-photo-details Posted by <span class="glyphicon glyphicon-user"></span>
-            a(href=`/profile/${photo.author}`) #{photo.author}
-            span  <span class="glyphicon glyphicon-time"></span> #{photo.date}</p>
-          div.sharing-wrapper
-              a.facebook-share
-                div.fb-share-button(data-href=`https://much-pixels.herokuapp.com/photo/details/${photo.id}` data-layout="button" data-size="large" data-mobile-iframe="true")
-              a.google-share
-                i.fa.fa-google-plus-square
-              a.twitter-share
-                i.fa.fa-twitter-square
-              if user
-                a.comment-box(href=`/photo/details/${photo.id}`)
-                  i.fa.fa-comment
-              else
-                i
-          div.image-wrapper
-            a(href=`/photo/details/${photo.id}`)
-              img.single-image(src=`${photo.url}`) 
-          div.single-photo-description-wrapper
-             p.single-photo-description= `${photo.description.substring(0, 25)}...` 
-             p.single-photo-votes= "Influence: " + photo.upvotes.length
+if photos.length > 0
+    each photo in photos
+            .single-photo-wrapper.col-xs-11.col-sm-8.col-md-7.col-xl-10
+              a.single-photo-heading(href=`/photo/details/${photo.id}`)= photo.title
+              p.single-photo-details Posted by <span class="glyphicon glyphicon-user"></span>
+                a(href=`/profile/${photo.author}`) #{photo.author}
+                span  <span class="glyphicon glyphicon-time"></span> #{photo.date}</p>
+              div.sharing-wrapper
+                  a.facebook-share
+                    div.fb-share-button(data-href=`https://much-pixels.herokuapp.com/photo/details/${photo.id}` data-layout="button" data-size="large" data-mobile-iframe="true")
+                  a.google-share
+                    i.fa.fa-google-plus-square
+                  a.twitter-share
+                    i.fa.fa-twitter-square
+                  if user
+                    a.comment-box(href=`/photo/details/${photo.id}`)
+                      i.fa.fa-comment
+                  else
+                    i
+              div.image-wrapper
+                a(href=`/photo/details/${photo.id}`)
+                  img.single-image(src=`${photo.url}`)
+              div.single-photo-description-wrapper
+                 p.single-photo-description= `${photo.description.substring(0, 25)}...`
+                 p.single-photo-votes= "Influence: " + photo.upvotes.length
+else
+    h2 Sorry, no photos found
