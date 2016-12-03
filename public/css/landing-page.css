@@ -2190,6 +2190,9 @@
   overflow: visible;
   clip: auto; }
 
+/**
+* Landing page colors
+*/
 html {
   margin: 0;
   padding: 0;
@@ -2212,7 +2215,7 @@ body {
 
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
-  color: white; }
+  color: #ffffff; }
 
 .button-wrapper {
   position: fixed;

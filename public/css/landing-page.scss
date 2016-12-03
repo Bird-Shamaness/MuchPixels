@@ -1,4 +1,5 @@
 @import "lib/font-awesome/font-awesome";
+@import "variables/variables";
 
 html {
   margin: 0;
@@ -15,8 +16,8 @@ body {
 
 .home-image-wrapper{
    background: linear-gradient(
-      rgba(0, 0, 0, 0.6), 
-      rgba(0, 0, 0, 0.6)
+      $home-background, 
+      $home-background
     ), url("../images/bg.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -o-background-size: cover;
@@ -28,7 +29,7 @@ body {
 
 a:link, a:visited, a:hover, a:active   {
     text-decoration: none;
-    color: white;
+    color: $home-link-color;
 }
 
 .button-wrapper{
@@ -43,7 +44,7 @@ a:link, a:visited, a:hover, a:active   {
     position: relative;
     margin: 1%;
     margin-top:15%;
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: $home-buttons-color;
     border: 1px solid grey;
     color: white;
     link-style-type: none;
@@ -51,13 +52,13 @@ a:link, a:visited, a:hover, a:active   {
 }
 
 .button-discover:hover, .button-signin:hover , .button-signup:hover, .button-profile:hover{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: $home-buttons-hover;
 }
 
 .header-title {
      opacity: 0;
      position: relative;
-     color: rgba(255, 255, 255, 0.7); 
+     color: $header-title-color; 
      font-family: 'Helvetica Neue', sans-serif; 
      font-size: 149px; 
      font-weight: bold; 
@@ -77,7 +78,7 @@ a:link, a:visited, a:hover, a:active   {
 .header-subtitle {
      opacity: 0;
      position: relative;
-     color: rgba(255, 255, 255, 0.4); 
+     color: $header-subtitle-color; 
      font-family: 'Helvetica Neue', sans-serif; 
      font-size: 30px; 
      font-weight: bold; 
