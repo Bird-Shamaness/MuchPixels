@@ -23,4 +23,17 @@
                  });
          }
      });
+
+     $('#search-tags').click(() =>{
+         var pattern = $('#pattern').val();
+         if (pattern.length > 0) {
+             var url = `/api/search/tags/${pattern}`;
+             console.log(url);
+
+             requester.get(url)
+                 .then(response => {
+                     $('#results').html(response);
+                 });
+         }
+     });
  };
