@@ -51,11 +51,10 @@ module.exports = function (models) {
         },
         searchTags(tag) {
             return new Promise((resolve, reject) => {
-                let regex = new RegExp(tag, 'i');
 
                 Photo.find({
                         $or: [{
-                            'tags': regex
+                            'tags': tag
                         }]
                     },
                     (err, photos) => {
