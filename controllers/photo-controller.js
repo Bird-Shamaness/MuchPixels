@@ -47,7 +47,7 @@ module.exports = function (data) {
                 }).then((convertedTime) => {
                     photoModel.date = convertedTime;
 
-                    res.render('photo-details', {
+                    res.render('photo/photo-details', {
                         photoModel
                     });
                 })
@@ -61,7 +61,7 @@ module.exports = function (data) {
                     return timeConverter.convertMultiple(photos, new Date());
                 })
                 .then((photos) => {
-                    res.render('photo-list', {
+                    res.render('photo/photo-list', {
                         photos
                     });
                 });
@@ -72,7 +72,7 @@ module.exports = function (data) {
                     return timeConverter.convertMultiple(photos, new Date());
                 })
                 .then((photos) => {
-                    res.render('photo-list', {
+                    res.render('photo/photo-list', {
                         photos
                     });
                 });
@@ -130,7 +130,7 @@ module.exports = function (data) {
                 .then((photos) => {
                     if (photos) {
                         res.send;
-                        res.render('photo-list', {
+                        res.render('photo/photo-list', {
                             photos
                         });
                     }

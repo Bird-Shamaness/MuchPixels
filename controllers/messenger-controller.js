@@ -1,5 +1,5 @@
 module.exports = {
-    getMessenger(req, res) {
-      res.render('messenger');
-    }
+  getMessenger(req, res) {
+    res.render('messenger/messenger');
+  }
 };

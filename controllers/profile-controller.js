@@ -12,12 +12,12 @@ module.exports = function (data) {
           const userModel = {
             name: user.profile.name || user.username,
             picture: user.profile.picture || user.gravatar,
-            photos: userPhotos, 
+            photos: userPhotos,
             description: user.description,
             registered: user.createdAt
           };
 
-          res.render('profile', {
+          res.render('user/profile', {
             userModel
           });
         })
