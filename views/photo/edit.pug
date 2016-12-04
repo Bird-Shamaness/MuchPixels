@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    img(src=`data:${photo.contentType};base64,${photo.data}`)
+    img.edit-image(src=`${photo.url}`)
 
     form(method='POST')
         input(type='hidden', name='_csrf', value=_csrf)
