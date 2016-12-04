@@ -29,7 +29,7 @@ block content
                 div.fb-share-button(data-href=`https://much-pixels.herokuapp.com/photo/details/${photo.id}` data-layout="button" data-size="large" data-mobile-iframe="true")
               a.google-share
                 div.g-plus(data-action="share" data-annotation="none" data-height="24" data-href=`https://much-pixels.herokuapp.com/photo/details/${photo.id}`)
-              a.twitter-share
+              a.twitter-share-button.twitter-share(href="https://twitter.com/share" data-size="medium"  data-text="Check out this great pic!"  data-url=`https://much-pixels.herokuapp.com/photo/details/${photo.id}` data-hashtags="photography,pixels,project")
                 i.fa.fa-twitter-square
         
         h3= photoModel.votes + ' votes'
