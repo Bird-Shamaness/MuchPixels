@@ -1,4 +1,5 @@
 module.exports = {
+<<<<<<< HEAD
   getMessenger(req, res) {
 <<<<<<< HEAD
     res.render('messenger');
@@ -23,3 +24,9 @@ module.exports = {
   }
 };
 >>>>>>> origin/master
+=======
+    getMessenger(req, res) {
+      res.render('messenger');
+    }
+};
+>>>>>>> parent of f06335f... Partialy implemented data
