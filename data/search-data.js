@@ -6,8 +6,7 @@ module.exports = function (models) {
 
     return {
         searchPhotos(pattern) {
-            var regex = new RegExp(pattern, 'i');
-            console.log('controller ', pattern);
+            let regex = new RegExp(pattern, 'i');
 
             return new Promise((resolve, reject) => {
                 Photo.find({
@@ -28,7 +27,7 @@ module.exports = function (models) {
             });
         },
         searchUsers(pattern) {
-            var regex = new RegExp(pattern, 'i');
+            let regex = new RegExp(pattern, 'i');
 
             return new Promise((resolve, reject) => {
                 User.find({
@@ -52,9 +51,11 @@ module.exports = function (models) {
         },
         searchTags(tag) {
             return new Promise((resolve, reject) => {
+                let regex = new RegExp(tag, 'i');
+
                 Photo.find({
                         $or: [{
-                            'tags': contains(tag)
+                            'tags': regex
                         }]
                     },
                     (err, photos) => {
