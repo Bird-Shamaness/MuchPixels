@@ -93,7 +93,7 @@ module.exports = function (data) {
                         title: foundPhoto.title
                     };
 
-                    res.render('edit', {
+                    res.render('photo/edit', {
                         photo: photoModel
                     });
                 })
