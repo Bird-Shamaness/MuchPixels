@@ -133,6 +133,9 @@ module.exports = function (data) {
                     }
                 })
                 .then((photos) => {
+                    return timeConverter.convertMultiple(photos, new Date());
+                })
+                .then((photos) => {
                     if (photos) {
                         res.send;
                         res.render('photo-list', {
