@@ -4,9 +4,8 @@
 @import "lib/font-awesome/font-awesome";
 
 @import "themes/default/default";
+@import "variables/variables";
 
-// Scaffolding
-// -------------------------
 
 html {
   position: relative;
@@ -17,7 +16,7 @@ body {
   margin: 0;
   padding-top: 60px;
   margin-bottom: 75px;
-  background-color: #F7F8FA;
+  background-color: $body-background-color;
 } 
 
 /**
@@ -30,7 +29,7 @@ body {
   margin: 0;
   position: relative;
   width: 95vw;
-  background-color: rgba(247,248,250,1);
+  background-color: $single-photo-wrapper-color;
 }
 
 .single-photo-wrapper{
@@ -38,11 +37,10 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 15px;
-  background-color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1%;
-  border: 1px solid #eaeaea;
+  border: 1px solid $wrapper-border-color;
   border-radius: 5px;
-  background-color: #F7F8FA; 
+  background-color: $single-photo-color; 
   height:  75vh;
   text-align: center;
 }
@@ -50,7 +48,7 @@ body {
   height: 40vh; 
   width: 100%;
   overflow: hidden;
-  background-color: #F7F8FA;
+  background-color: $single-photo-color;
 }
 .single-image{
   object-fit: cover;
@@ -64,18 +62,18 @@ body {
 .single-photo-heading{
   font-size: 24px;
   text-align: left;
-  color: #000000;
-  font-family: "Courier New", Courier, monospace;
+  color: $single-photo-heading-color;
+  font-family: $main-font;
 }
 
 .single-photo-heading:hover{
   font-size: 24px;
   text-align: left;
-  color: #000000;
+  color: $sinlge-hoto-heading-hover;
   text-decoration: none;
 }
 .single-photo-details{
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
 }
 
 .single-photo-description-wrapper{
@@ -85,23 +83,21 @@ body {
   text-align: left;
   background-color: white;
   padding: 0%;
-  background-color: #F7F8FA;
+  background-color: $single-photo-color;
 }
 
 .single-photo-description{
   padding: 1%;
   font-size: 1.0vw;
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
 }
 .single-photo-upvote-wrapper{
   display: inline-block;
-  float: right;
   margin-right:0px;
 }
 .fa.fa-camera-retro.vote{
   font-size: 24px;
   display: inline-block;
-  float:left;
   margin-top: 10px;
   margin-right:15px;
   height: 50px;
@@ -117,10 +113,9 @@ body {
 
 .single-photo-votes{
   display: inline-block;
-  float: left;
   margin-top:22px;
   margin-right:15px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
   font-weight: 600;
   font-size: 1.3w;
 }
@@ -226,7 +221,7 @@ textarea {
  
 .navbar-brand{
   font-size: 30px;
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
   font-weight: 500;
   letter-spacing: 5px;
 }
@@ -248,7 +243,6 @@ textarea {
 /**
 * Other user profile page
 */
-
 .thumbnail {
   padding: 0;
   border-radius: 0;
@@ -294,7 +288,7 @@ footer {
 }
 
 .picture-date{
-   font-family: "Courier New", Courier, monospace;
+   font-family: $main-font;
    font-size: 1vw;
 }
 .title{
@@ -304,7 +298,7 @@ footer {
 
 .subtitle{
   font-size: 2vw;
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
 }
 
 .profile-pic{
@@ -312,12 +306,12 @@ footer {
 }
 
 .user-description{
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
 }
 
 .date-registered{
   font-size: 1vw;
-  font-family: "Courier New", Courier, monospace; 
+  font-family: $main-font; 
 }
 
 @media (max-width: 500px){
@@ -339,7 +333,7 @@ footer {
   color: #000000;
   font-size: 1.5vw;
   text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
 }
 
 .picture-title:hover{
@@ -359,7 +353,7 @@ footer {
   margin-top: 1%;
   height: auto;
   overflow: hidden;
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
 }
 
 .picture-wrapper{
@@ -375,7 +369,7 @@ footer {
 }
 
 .picture-votes{
-  font-family: "Courier New", Courier, monospace;
+  font-family: $main-font;
   font-weight: bold;
   float: right;
 }
