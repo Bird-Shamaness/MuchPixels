@@ -91,6 +91,7 @@ module.exports = function (app, passportConfig, controllers, upload) {
    * Messenger routes
    */
   app.get('/messenger', messengerController.getMessenger);
+  //app.get('/messenger', messengerController.insertMessage);  
 
   /**
    * OAuth authentication routes. (Sign in)

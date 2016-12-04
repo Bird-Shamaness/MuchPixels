@@ -3,7 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const User = require('../models/User'),
-  Photo = require('../models/Photo');
+  Photo = require('../models/Photo'),
+  Message = require('../models/Message');
 
 module.exports = function (connectionString) {
   mongoose.Promise = global.Promise;
@@ -18,7 +19,8 @@ module.exports = function (connectionString) {
 
   const models = {
     Photo,
-    User
+    User,
+    Message
   };
 
   fs.readdirSync('./data')
