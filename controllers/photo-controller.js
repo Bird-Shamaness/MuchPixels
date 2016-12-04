@@ -27,6 +27,7 @@ module.exports = function (data) {
                         hasUser: !!req.user,
                         title: photo.title,
                         description: photo.description,
+                        tags: photo.tags,
                         canEdit
                     };
 

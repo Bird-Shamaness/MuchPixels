@@ -25,6 +25,11 @@ block content
               button.fa.fa-thumbs-down.unvote.fa-4x
         p.lead= photoModel.description
         hr
+        div.tags
+          span Tags:
+          each tag in photoModel.tags
+            span.tag= tag
+        hr
         h3 Comments
         each comment in photoModel.comments
           div.well
