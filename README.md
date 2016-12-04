@@ -3,7 +3,6 @@
 [Hosted here](https://much-pixels.herokuapp.com "much pixels")
 
 ## TODO
-- Add tags(or categories)
 - Restrict user from dragging texareas
 
 - Photo 
