@@ -1,0 +1,58 @@
+extends ../layout
+
+block content
+  div.container-fluid
+    div.row
+      div.col-sm-12
+        div.page-header
+          h1= photoModel.title
+          if photoModel.canEdit
+            a.pull-right.glyphicon.glyphicon-edit.big(href=`/photo/edit/${photoModel.id}`) 
+          p Posted by <span class="glyphicon glyphicon-user"></span>
+            a(href=`/profile/${photoModel.author}`) #{photoModel.author}
+            span  <span class="glyphicon glyphicon-time"></span> #{photoModel.date}</p>
+    div.row
+      div.col-sm-8
+        figure.margin-b-2
+          img.img-responsive(src=`${photoModel.url}`)
+        
+        h3= photoModel.votes + ' votes'
+        div.voting
+          if photoModel.hasUser
+            if photoModel.canUpvote
+              button.fa.fa-camera-retro.vote.fa-4x
+            else 
+              button.fa.fa-thumbs-down.unvote.fa-4x
+        p.lead= photoModel.description
+        hr
+        div.tags
+          span Tags:
+          each tag in photoModel.tags
+            span.tag= tag
+        hr
+        div#photo-comments
+          h3 Comments
+          each comment in photoModel.comments
+            div.well
+              div.media
+                div.media-body
+                  if comment.canDeleteComment
+                    button.pull-right.glyphicon.glyphicon-trash.big.delete-comment
+                  p= comment.comment.date
+                  h4.margin-t-0
+                    a(href=`/profile/${comment.user}`) #{comment.comment.user} 
+                  p= comment.comment.content
+            
+        hr
+        if photoModel.hasUser
+          div#comment-box
+            h3 Leave a comment
+            div.well
+              textarea.form-control(type='text', name='content', id='content', required)
+              button.btn.btn-default#comment Comment
+        hr
+    hr
+
+    
+  script(src='/js/requester.js')
+  script(src='/js/voter.js')
