@@ -147,12 +147,24 @@ module.exports = function (models) {
         deleteComment(id, commentDate) {
             const dateOfComment = new Date(commentDate);
 
-            return Photo.findById(id, (err, photo) => {
-                var comment = photo.comments.find(x => x.date.toString() === dateOfComment.toString());
-                var commentId = photo.comments.indexOf(comment);
-                photo.comments.splice(commentId)
+            return new Promise((resolve, reject) => {
+                Photo.findById(id, (err, photo) => {
+                    if (err) {
+                        reject(err);
+                    }
 
-                photo.save();
+                    var comment = photo.comments.find(x => x.date.toString() === dateOfComment.toString());
+                    var commentId = photo.comments.indexOf(comment);
+                    photo.comments.splice(commentId)
+
+                    photo.save((err, photo) => {
+                        if (err) {
+                            reject(err);
+                        }
+
+                        resolve(photo);
+                    });
+                });
             });
         }
     };

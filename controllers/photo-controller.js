@@ -175,8 +175,24 @@ module.exports = function (data) {
             const dateToString = req.body.content;
             data.deleteComment(req.params.id, dateToString)
                 .then(photo => {
-                    res.render('photo-details', {
-                        photo
+                    const comments = [];
+
+                    photo.comments.forEach(function (comment) {
+                        let canDeleteComment = comment.user === req.user.username || photo.author === req.user.username || req.user.roles.indexOf('admin') > -1;
+
+                        comments.push({
+                            comment,
+                            canDeleteComment
+                        });
+
+                    }, this);
+
+                    const model = {
+                        comments
+                    };
+
+                    res.render('partials/comments', {
+                        photo: model
                     });
                 })
                 .catch(err => {

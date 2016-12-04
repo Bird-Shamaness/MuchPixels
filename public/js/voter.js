@@ -45,7 +45,7 @@ let initVoter = () => {
 
     requester.post(url, content)
       .then((response) => {
-        $('body').html(response);
+        $('#photo-comments').html(response);
       });
   });
 };
