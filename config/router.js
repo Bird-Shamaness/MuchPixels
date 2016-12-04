@@ -11,6 +11,7 @@ module.exports = function (app, passportConfig, controllers, upload) {
   const errorController = controllers.errorController;
   const messengerController = controllers.messengerController;
   const searchController = controllers.searchController;
+  const commentController = controllers.commentController;
 
   /**
    * Loading passport configuration
@@ -64,10 +65,10 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.get('/photo/edit/:id', passportConfig.isAuthenticated, photoController.getEdit);
   app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
 
-  app.post('/api/photo/:id', passportConfig.isAuthenticated, photoController.postComment);
-  app.post('/api/photo/delete/:id', passportConfig.isAuthenticated, photoController.removeComment);
-  app.get('/api/photo/:id/upvote', passportConfig.isAuthenticated, photoController.putUpvote);
-  app.get('/api/photo/:id/unvote', passportConfig.isAuthenticated, photoController.removeUpvote);
+  app.post('/api/photo/:id', passportConfig.isAuthenticated, commentController.postComment);
+  app.post('/api/photo/delete/:id', passportConfig.isAuthenticated, commentController.removeComment);
+  app.get('/api/photo/:id/upvote', passportConfig.isAuthenticated, commentController.putUpvote);
+  app.get('/api/photo/:id/unvote', passportConfig.isAuthenticated, commentController.removeUpvote);
 
   app.get('/photo/hot', photoController.getType);
   app.get('/photo/trending', photoController.getType);
