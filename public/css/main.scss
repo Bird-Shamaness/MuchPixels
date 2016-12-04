@@ -98,12 +98,8 @@ body {
   float: right;
   margin-right:0px;
 }
-.fa.fa-camera-retro.vote{
+.fa.fa-camera-retro.vote, .downvote{
   font-size: 24px;
-  display: inline-block;
-  float:left;
-  margin-top: 10px;
-  margin-right:15px;
   height: 50px;
   width: 50px;
   background-color: rgba(0,0,0,0.0);
@@ -113,6 +109,10 @@ body {
 .fa.fa-camera-retro.vote:hover{
   background-color: rgba(0,255,0,0.3);
   border-radius: 5px;
+}
+
+.downvote:hover{
+  background-color: rgba(255, 0, 0, 0.6);
 }
 
 .single-photo-votes{
@@ -386,6 +386,16 @@ footer {
   font-weight: bold;
   float: right;
 }
+
+/**
+* Photo details
+*/
+/*.upvote, .downvote{
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
+  margin: 0;
+}*/
 
 
 /**

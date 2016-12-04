@@ -20,9 +20,9 @@ block content
         div.voting
           if photoModel.hasUser
             if photoModel.canUpvote
-              button.fa.fa-camera-retro.vote.fa-4x
+              button.upvote.fa.fa-camera-retro.vote.fa-4x
             else 
-              button.fa.fa-thumbs-down.unvote.fa-4x
+              button.downvote.fa.fa-thumbs-down.unvote.fa-4x
         p.lead= photoModel.description
         hr
         div.tags
