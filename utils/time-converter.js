@@ -101,6 +101,8 @@ function convert(input, today) {
         }
         return currentSeconds - second + ' seconds ago';
     }
+
+    return 'just now';
 }
 
 module.exports.convertTime = (date, today) => new Promise((resolve, reject) => {
