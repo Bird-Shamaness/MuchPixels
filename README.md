@@ -4,8 +4,6 @@
 
 ## TODO
 - Add tags(or categories)
-- Implement photo search (by title, category, description, uploader, date)
-- Implement user search (by name, username, description, location)
 - Restrict user from dragging texareas
 
 - Photo 
