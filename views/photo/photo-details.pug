@@ -54,10 +54,10 @@ block content
                 div.media-body
                   if comment.canDeleteComment
                     button.pull-right.glyphicon.glyphicon-trash.big.delete-comment
-                  p= comment.comment.date
+                  p= comment.date
                   h4.margin-t-0
-                    a(href=`/profile/${comment.user}`) #{comment.comment.user} 
-                  p= comment.comment.content
+                    a(href=`/profile/${comment.user}`) #{comment.user}
+                  p= comment.content
             
         hr
         if photoModel.hasUser

@@ -44,8 +44,14 @@ module.exports = function (data) {
                     };
 
                     return timeConverter.convertTime(photoModel.date, new Date());
-                }).then((convertedTime) => {
+                })
+                .then((convertedTime) => {
                     photoModel.date = convertedTime;
+
+                    return timeConverter.convertMultipleComments(photoModel.comments, new Date());
+                })
+                .then((convertedCommentDates) => {
+                    photoModel.comments = convertedCommentDates;
 
                     res.render('photo/photo-details', {
                         photoModel

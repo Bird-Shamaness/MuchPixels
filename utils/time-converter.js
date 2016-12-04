@@ -128,3 +128,18 @@ module.exports.convertMultiple = (photos, today) => new Promise((resolve, reject
 
     resolve(convertedPhotos);
 });
+
+module.exports.convertMultipleComments = (comments, today) => new Promise((resolve, reject) => {
+    let convertedComments = [];
+
+    for (comment of comments) {
+        convertedComments.push({
+            canDeleteComment: comment.canDeleteComment,
+            date: convert(comment.comment.date, today),
+            user: comment.comment.user,
+            content: comment.comment.content
+        });
+    }
+
+    resolve(convertedComments);
+});
