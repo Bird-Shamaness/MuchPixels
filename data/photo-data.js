@@ -129,6 +129,31 @@ module.exports = function (models) {
             return Photo.remove({
                 _id: id
             });
+        },
+        getPhotoCount() {
+            return Photo.count({}, (err, count) => new Promise((resolve, reject) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(count);
+            }));
+        },
+        deletePhoto(id) {
+            return Photo.remove({
+                _id: id
+            });
+        },
+        deleteComment(id, commentDate) {
+            const dateOfComment = new Date(commentDate);
+
+            return Photo.findById(id, (err, photo) => {
+                var comment = photo.comments.find(x => x.date.toString() === dateOfComment.toString());
+                var commentId = photo.comments.indexOf(comment);
+                photo.comments.splice(commentId)
+
+                photo.save();
+            });
         }
     };
 };

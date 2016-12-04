@@ -10,17 +10,29 @@ module.exports = function (data) {
                     let canUpvote = false;
                     let canEdit = false;
 
+                    const comments = [];
+
                     if (req.user) {
                         canUpvote = !photo.upvotes.find(v => v.user === req.user.email);
 
                         canEdit = photo.author === req.user.username || req.user.roles.indexOf('admin') > -1;
+
+                        photo.comments.forEach(function (comment) {
+                            let canDeleteComment = comment.user === req.user.username || photo.author === req.user.username || req.user.roles.indexOf('admin') > -1;
+
+                            comments.push({
+                                comment,
+                                canDeleteComment
+                            });
+
+                        }, this);
                     }
 
                     photoModel = {
                         url: photo.url,
                         canUpvote,
                         votes: photo.upvotes.length,
-                        comments: photo.comments,
+                        comments: comments,
                         date: photo.date,
                         author: photo.author,
                         id: photo._id,
@@ -154,6 +166,18 @@ module.exports = function (data) {
             data.deletePhoto(req.params.id)
                 .then(() => {
                     res.redirect('/photo/hot');
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        },
+        removeComment(req, res) {
+            const dateToString = req.body.content;
+            data.deleteComment(req.params.id, dateToString)
+                .then(photo => {
+                    res.render('photo-details', {
+                        photo
+                    });
                 })
                 .catch(err => {
                     console.log(err);

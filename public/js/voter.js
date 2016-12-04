@@ -38,4 +38,14 @@ let initVoter = () => {
         $('body').html(response);
       });
   });
+
+  $('.delete-comment').click((ev) => {
+    var content = ev.target.nextElementSibling.innerText;
+    var url = `/api/photo/delete/${id}`;
+
+    requester.post(url, content)
+      .then((response) => {
+        $('body').html(response);
+      });
+  });
 };

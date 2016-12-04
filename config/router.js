@@ -65,6 +65,7 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.post('/photo/edit/:id', passportConfig.isAuthenticated, photoController.postEdit);
 
   app.post('/api/photo/:id', passportConfig.isAuthenticated, photoController.postComment);
+  app.post('/api/photo/delete/:id', passportConfig.isAuthenticated, photoController.removeComment);
   app.get('/api/photo/:id/upvote', passportConfig.isAuthenticated, photoController.putUpvote);
   app.get('/api/photo/:id/unvote', passportConfig.isAuthenticated, photoController.removeUpvote);
 
