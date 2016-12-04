@@ -50,6 +50,7 @@ module.exports = function (app, passportConfig, controllers, upload) {
   app.get('/search', searchController.index);
   app.get('/api/search/photos/:pattern', searchController.searchPhotos);
   app.get('/api/search/users/:pattern', searchController.searchUsers);
+  app.get('/api/search/tags/:pattern', searchController.searchTags);
 
   /**
    * Upload routes
