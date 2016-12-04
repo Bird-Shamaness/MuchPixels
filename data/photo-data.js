@@ -18,12 +18,10 @@ module.exports = function (models) {
         createPhoto(url, author, title, description, tags) {
             return new Promise((resolve, reject) => {
 
-                let tagsArr = tags.split(',');
+                tags = tags.split(',');
 
-                tags = [];
-
-                for (let tag of tagsArr) {
-                    tags.push(tag);
+                for (let tag of tags) {
+                    tag = tag.trim();
                 }
 
                 const photo = new Photo({
