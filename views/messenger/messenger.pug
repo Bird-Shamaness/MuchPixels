@@ -12,10 +12,10 @@ head
     link(rel='stylesheet', href='/css/main.css')
     link(rel='stylesheet', href='/css/messenger.css')
 body
- include partials/header
+ include ../partials/header
 
  .container
-  include partials/flash
+  include ../partials/flash
    block content
     h1 Much Pixels Messenger
     div.container
@@ -42,7 +42,7 @@ body
                         textarea#message.form-control.input-lg
                         br
                         button.btn.btn-success.btn-lg(type='submit') Send Message
-include partials/footer
+include ../partials/footer
 
     script(src='/js/lib/jquery-2.2.4.min.js')
     script(src='/js/lib/bootstrap.min.js')

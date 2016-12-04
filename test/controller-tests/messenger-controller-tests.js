@@ -20,6 +20,6 @@ describe('Messenger controller tests', () => {
 
         var renderedView = response._getRenderView();
 
-        expect(renderedView).to.eql('messenger');
+        expect(renderedView).to.eql('messenger/messenger');
     });
 });

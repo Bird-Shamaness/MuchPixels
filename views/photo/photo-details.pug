@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   div.container-fluid
@@ -25,15 +25,23 @@ block content
               button.fa.fa-thumbs-down.unvote.fa-4x
         p.lead= photoModel.description
         hr
-        h3 Comments
-        each comment in photoModel.comments
-          div.well
-            div.media
-              div.media-body
-                p= comment.date
-                h4.margin-t-0
-                  a(href=`/profile/${comment.user}`) #{comment.user} 
-                p= comment.content
+        div.tags
+          span Tags:
+          each tag in photoModel.tags
+            span.tag= tag
+        hr
+        div#photo-comments
+          h3 Comments
+          each comment in photoModel.comments
+            div.well
+              div.media
+                div.media-body
+                  if comment.canDeleteComment
+                    button.pull-right.glyphicon.glyphicon-trash.big.delete-comment
+                  p= comment.comment.date
+                  h4.margin-t-0
+                    a(href=`/profile/${comment.user}`) #{comment.comment.user} 
+                  p= comment.comment.content
             
         hr
         if photoModel.hasUser

@@ -6,7 +6,7 @@ module.exports = function (models) {
 
     return {
         searchPhotos(pattern) {
-            var regex = new RegExp(pattern, 'i');
+            let regex = new RegExp(pattern, 'i');
 
             return new Promise((resolve, reject) => {
                 Photo.find({
@@ -27,7 +27,7 @@ module.exports = function (models) {
             });
         },
         searchUsers(pattern) {
-            var regex = new RegExp(pattern, 'i');
+            let regex = new RegExp(pattern, 'i');
 
             return new Promise((resolve, reject) => {
                 User.find({
@@ -48,6 +48,24 @@ module.exports = function (models) {
                         resolve(users);
                     })
             });
-        }
+        },
+        searchTags(tag) {
+            return new Promise((resolve, reject) => {
+
+                Photo.find({
+                        $or: [{
+                            'tags': tag
+                        }]
+                    },
+                    (err, photos) => {
+
+                        if (err) {
+                            reject(err);
+                        }
+
+                        resolve(photos);
+                    })
+            });
+        },
     };
 };

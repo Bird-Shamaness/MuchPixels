@@ -1,8 +1,8 @@
  const initSearcher = () => {
      $('#search-photos').click(() => {
-         var pattern = $('#pattern').val();
+         let pattern = $('#pattern').val();
          if (pattern.length > 0) {
-             var url = `/api/search/photos/${pattern}`;
+             let url = `/api/search/photos/${pattern}`;
 
              requester.get(url)
                  .then(response => {
@@ -12,13 +12,26 @@
      });
 
      $('#search-users').click(() => {
-         var pattern = $('#pattern').val();
+         let pattern = $('#pattern').val();
          if (pattern.length > 0) {
-             var url = `/api/search/users/${pattern}`;
+             let url = `/api/search/users/${pattern}`;
 
              requester.get(url)
                  .then(response => {
                      console.log(response);
+                     $('#results').html(response);
+                 });
+         }
+     });
+
+     $('#search-tags').click(() =>{
+         let pattern = $('#pattern').val();
+         if (pattern.length > 0) {
+             let url = `/api/search/tags/${pattern}`;
+             console.log(url);
+
+             requester.get(url)
+                 .then(response => {
                      $('#results').html(response);
                  });
          }

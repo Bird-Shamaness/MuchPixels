@@ -184,11 +184,17 @@ textarea {
 
 .upload-wrapper,
 .upload-file,
-.upload-title{
+.upload-title,
+.upload-tags{
   float: center;
   padding: 1%;  
   font-size: 18px;
   font-family: "Arial", Times;
+}
+
+.upload-tags{
+  clear: both;
+  width: 100%;
 }
 
 .upload-description{
@@ -196,7 +202,7 @@ textarea {
   width: 100%;
 }
 
-.control-label-file, .control-label-title, .control-label-description{
+.control-label-file, .control-label-title, .control-label-description, .control-label-tags{
   display: inline-block;
   font-size: 18px;
   margin: 1%;
@@ -207,6 +213,13 @@ textarea {
   display: inline-block;
   width: 100%;
   margin-top: 1%;
+}
+/**
+*Photo description
+*/
+//TODO make me beautiful
+.tag{
+  border: 1px solid black;
 }
 
 /**

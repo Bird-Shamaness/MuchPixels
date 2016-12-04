@@ -36,7 +36,7 @@ module.exports = function (data, cloudinary) {
       const photoDestination = req.file.path;
 
       cloudinary.uploader.upload(photoDestination, function (result) {
-        data.createPhoto(result.url, req.user.username, req.body.title, req.body.description)
+        data.createPhoto(result.url, req.user.username, req.body.title, req.body.description, req.body.tags)
           .then((photo) => {
             req.flash('success', {
               msg: 'Your photo was uploaded successfully.'

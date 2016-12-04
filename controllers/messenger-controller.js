@@ -1,5 +1,6 @@
 module.exports = {
   getMessenger(req, res) {
+<<<<<<< HEAD
     res.render('messenger');
   }
 };
@@ -17,3 +18,8 @@ module.exports = {
 //     }
 //   };
 // };
+=======
+    res.render('messenger/messenger');
+  }
+};
+>>>>>>> origin/master

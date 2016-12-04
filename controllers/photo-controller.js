@@ -10,23 +10,36 @@ module.exports = function (data) {
                     let canUpvote = false;
                     let canEdit = false;
 
+                    const comments = [];
+
                     if (req.user) {
                         canUpvote = !photo.upvotes.find(v => v.user === req.user.email);
 
                         canEdit = photo.author === req.user.username || req.user.roles.indexOf('admin') > -1;
+
+                        photo.comments.forEach(function (comment) {
+                            let canDeleteComment = comment.user === req.user.username || photo.author === req.user.username || req.user.roles.indexOf('admin') > -1;
+
+                            comments.push({
+                                comment,
+                                canDeleteComment
+                            });
+
+                        }, this);
                     }
 
                     photoModel = {
                         url: photo.url,
                         canUpvote,
                         votes: photo.upvotes.length,
-                        comments: photo.comments,
+                        comments: comments,
                         date: photo.date,
                         author: photo.author,
                         id: photo._id,
                         hasUser: !!req.user,
                         title: photo.title,
                         description: photo.description,
+                        tags: photo.tags,
                         canEdit
                     };
 
@@ -34,7 +47,7 @@ module.exports = function (data) {
                 }).then((convertedTime) => {
                     photoModel.date = convertedTime;
 
-                    res.render('photo-details', {
+                    res.render('photo/photo-details', {
                         photoModel
                     });
                 })
@@ -48,7 +61,7 @@ module.exports = function (data) {
                     return timeConverter.convertMultiple(photos, new Date());
                 })
                 .then((photos) => {
-                    res.render('photo-list', {
+                    res.render('photo/photo-list', {
                         photos
                     });
                 });
@@ -59,30 +72,9 @@ module.exports = function (data) {
                     return timeConverter.convertMultiple(photos, new Date());
                 })
                 .then((photos) => {
-                    res.render('photo-list', {
+                    res.render('photo/photo-list', {
                         photos
                     });
-                });
-        },
-        postComment(req, res) {
-            data.createComment(req.params.id, req.body.content, req.user)
-                .then((successPhoto) => {
-                    res.send;
-                    res.redirect(`/photo/details/${req.params.id}`);
-                });
-        },
-        putUpvote(req, res) {
-            data.upvote(req.params.id, req.user)
-                .then((successPhoto) => {
-                    res.send;
-                    res.redirect(`/photo/details/${req.params.id}`);
-                });
-        },
-        removeUpvote(req, res) {
-            data.unvote(req.params.id, req.user)
-                .then((successPhoto) => {
-                    res.send;
-                    res.redirect(`/photo/details/${req.params.id}`);
                 });
         },
         getEdit(req, res) {
@@ -133,9 +125,12 @@ module.exports = function (data) {
                     }
                 })
                 .then((photos) => {
+                    return timeConverter.convertMultiple(photos, new Date());
+                })
+                .then((photos) => {
                     if (photos) {
                         res.send;
-                        res.render('photo-list', {
+                        res.render('photo/photo-list', {
                             photos
                         });
                     }

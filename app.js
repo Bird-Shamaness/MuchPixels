@@ -73,6 +73,7 @@ const profileController = require('./controllers/profile-controller')(data);
 const errorController = require('./controllers/error-controller');
 const messengerController = require('./controllers/messenger-controller');
 const searchController = require('./controllers/search-controller')(data);
+const commentController = require('./controllers/comment-controller')(data);
 
 const controllers = {
   homeController,
@@ -83,7 +84,8 @@ const controllers = {
   profileController,
   errorController,
   messengerController,
-  searchController
+  searchController,
+  commentController
 };
 
 /**

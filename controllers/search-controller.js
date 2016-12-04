@@ -22,6 +22,16 @@ module.exports = function (data) {
                         users
                     });
                 });
+        },
+        searchTags(req, res) {
+            const tag = req.params.pattern;
+
+            data.searchTags(tag)
+                .then(photos => {
+                    res.render('partials/photos-list', {
+                        photos
+                    });
+                });
         }
     };
-}
+};

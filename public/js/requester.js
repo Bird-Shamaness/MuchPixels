@@ -1,8 +1,9 @@
 const requester = {
   init() {
     $.ajaxSetup({
-      headers:
-            { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     });
   },
   get(url) {
@@ -17,14 +18,14 @@ const requester = {
     });
   },
   post(url, body) {
-    const comment = {
+    const dataBody = {
       content: body
     };
 
     return new Promise((resolve, reject) => {
       $.ajax({
         url,
-        data: JSON.stringify(comment),
+        data: JSON.stringify(dataBody),
         contentType: 'application/json',
         method: 'POST',
         success(response) {
