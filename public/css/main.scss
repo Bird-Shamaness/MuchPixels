@@ -93,6 +93,16 @@ body {
   font-size: 1.0vw;
   font-family: "Courier New", Courier, monospace;
 }
+
+@media (max-width: 650px){
+  .single-photo-description{
+     font-size: 5vw;
+  }
+  .single-photo-description-wrapper{
+     width: 50%;
+  } 
+
+}
 .single-photo-upvote-wrapper{
   display: inline-block;
   float: right;
@@ -217,7 +227,6 @@ textarea {
 /**
 *Photo description
 */
-//TODO make me beautiful
 .tag{
   border: 1px solid black;
 }
